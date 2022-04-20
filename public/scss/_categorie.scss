@@ -1,0 +1,43 @@
+/* ------------------------------
+		Categorie
+------------------------------ */
+.categorie{
+	background-color:$base-color ;
+	color:$white-color;
+	padding: 2px 15px;
+	display: inline-block;
+	margin:auto;
+	text-align: center;
+	font-size:13px;
+	border-radius: $rd-round;
+	font-weight: 800;
+	text-transform: capitalize;
+	@include easeInOut(0.5);
+	&:hover{
+		background-color:$bg-hover;
+		color:$white-color !important;
+	}
+
+	&-section{
+		margin-top:100px;
+		margin-bottom:30px;
+	}
+	&-title{
+		small{
+			a{
+				&:hover{
+					color:$base-color;
+				}
+			}
+		}
+		h3{
+			margin-bottom:10px;
+			span{
+				color:$base-color;
+			}
+		}
+		p{
+			margin-bottom:0px;
+		}
+	}
+}

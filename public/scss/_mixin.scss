@@ -1,0 +1,108 @@
+
+//mixin
+@mixin easeInOut($delay){
+    transition: all $delay+s ease-in-out;
+}
+
+@mixin shadow(){
+	box-shadow: 0px 5px 20px 0px rgba(69, 67, 96, 0.1);
+}
+
+
+@mixin after($left,$top,$width,$height){
+    position: absolute;
+	content:"";
+	left:$left;
+	top:$top;
+	width:$width;
+	height:$height;
+}
+
+@mixin tags(){
+  	ul{
+    	li{
+        	background-color:$light-color;
+        	padding: 4px 11px;
+        	margin-bottom:5px;
+        	margin-right: 2px;
+        	border-radius: $rd-round;
+        	font-size: 13px;
+			text-transform: capitalize;
+			color:$text-color;
+			font-weight: 700;
+			a:hover{
+            	color:$text-color;
+			}
+        }
+    }
+}
+
+
+@mixin small-post(){
+    display: flex;
+	margin-bottom:30px;
+	position: relative;
+	.image{
+		width:90px;
+		height: 90px;
+		margin-right:15px;
+		overflow: hidden;
+		position: relative;
+		border-radius: $rd-round;
+		img{
+			border-radius: $rd-round;
+			width:90px;
+			height: 90px;
+			@include easeInOut(0.9);
+			&:hover{
+				transform: scale(1.1);
+			}
+		}
+	}
+	.nb{
+		@include after(-5px,-5px,25px,25px);
+		border-radius: $rd-circle;
+		background-color: $base-color;
+		text-align: center;
+		color:$white-color;
+		font-size: 13px;
+		font-weight: 800;
+		line-height: 2;
+		z-index: 1;
+	}
+	
+    .content{
+		width:calc(100% - 90px);
+        p ,a{
+            font-weight: 900;
+			color:$dark-color;
+			margin-bottom:0;
+			@include easeInOut(0.3);
+		}
+		a{
+			&:hover{
+				color:$base-color !important;
+			}
+		}
+        small{
+			display: flex;
+			align-items: center;
+			margin-top:8px;
+			text-transform: capitalize;
+			font-size:13px;
+			color:$text-color;
+			font-weight:400;
+			.dot{
+				margin: 0px 6px  0px 0px !important;
+			}
+			span{
+				color:$base-color;
+				margin-right:5px;
+				    direction: ltr;
+			}
+		}
+		.link{
+			margin-bottom:8px;
+		}
+	}
+}

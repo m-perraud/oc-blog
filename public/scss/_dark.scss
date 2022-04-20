@@ -1,0 +1,142 @@
+/* ------------------------------
+		Dark Mode
+------------------------------ */
+.dark{
+    background-color:$bg-color;
+    color:$font-color;
+
+    .section,
+    .post-single-body .quote,
+    .widget-tags ul li,
+    .widget-categories li,
+    .post-single-footer .tags ul li,
+    .about-us .description .quote,
+    .loading ,
+    .custom-control-label::before,
+    .social-media a:hover{
+        background-color:$bg-color;
+    }
+
+    .navbar,
+    .widget,
+    .newslettre,
+    .footer,
+    .search,
+    .widget-form .form-control,
+    .newslettre-form .form-control,
+    .search-form input,
+    .dropdown-menu{
+        background-color: $bg-hover;
+    }
+    .post-card, 
+    .contact,
+    .post-single, 
+    .about-us{
+        background-color: $bg-hover !important;
+    }
+
+    .post-card,
+    .widget,
+    .post-single,
+    .newslettre,
+    .navbar-scroll,
+    .search-form{
+        box-shadow: none !important;
+    }
+
+    .social-icones li a i,
+    .post-card-info li,
+    .post-single-body .quote small,
+    .widget-categories li span,
+    .widget-tags ul li,
+    .widget-latest-posts .last-post .content small,
+    .post-single-info li,
+    .post-single-body .image p,
+    .widget-comments .comment-item .content .info li,
+    .newslettre-info p,
+    .newslettre .social-icones li a ,
+    .footer .copyright p ,
+    .post-single-footer .tags ul li,
+    .about-us .description .quote small ,
+    .social-media a i:hover,
+    .post-single-footer .tags ul li a:hover,
+    .widget-tags ul li a:hover,
+    .sign-form .sign-controls .btn-link {
+        color:$font-color;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .navbar .nav-item .nav-link,
+    .post-single-body .quote p,
+    .widget-latest-posts .last-post .content a,
+    .widget-next-post .small-post .content a,
+    .widget-previous-post .small-post .content a,
+    .newslettre-info h5,
+    .about-us .description .quote p,
+    .navbar .nav-item .dropdown-menu .dropdown-item,
+    .sign-form .btn-link {
+        color:$white-color;
+    }
+    .navbar-toggler span{
+        background-color:$white-color;
+        box-shadow: 0px -8px 0 0px $white-color, 0px 8px 0 0px $white-color;
+
+    }
+
+    .footer .copyright {
+        border-top: 1px solid rgba($white-color, 0.05);
+    }
+
+    .custom-control-label::before,
+    .widget-form .form-control{
+        border: 1px solid $bg-color;
+    }
+
+    .newslettre-form .form-control,
+    .widget-form .form-control,
+    .search-form input{
+        border: 1px solid rgba($white-color, 0.1); 
+    }
+    
+    .widget-form .form-control:hover,
+    .widget-form .form-control:focus,
+    .newslettre-form .form-control:focus,
+    .newslettre-form .form-control:hover,
+    .search-form input:hover,
+    .search-form input:focus{
+        background-color: $bg-color;
+        border: 1px solid $bg-color;
+        box-shadow: none; 
+    }
+
+    .categorie:hover,
+    .link:hover{
+        background-color: $white-color;
+        color:$dark-color !important;
+    }
+
+    @media screen and (max-width: 991px){
+        .navbar .nav-item .dropdown-menu {
+            background-color: $bg-color !important;
+        }
+    }
+
+    
+    ::-webkit-input-placeholder {
+        color: $font-color !important;
+    }
+
+    :-ms-input-placeholder {
+        color: $font-color !important;
+    }
+
+    ::-ms-input-placeholder {
+        color: $font-color !important;
+    }
+
+    ::placeholder {
+        color: $font-color !important;
+
+    }
+}
+

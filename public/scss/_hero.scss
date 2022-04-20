@@ -1,0 +1,144 @@
+/* ------------------------------
+		 Hero
+------------------------------ */
+.hero{
+	margin-bottom:0px;
+	position: relative;
+	background-position: center center;
+	background-size: cover;
+	height: calc(100vh - 65px);
+	z-index: 1;
+	&:after{
+		@include after(0,0,100%,100%);
+		background-color:rgba($black-color,0.5);
+		opacity: 1;
+		bottom:0;
+		z-index: -1;	
+	}
+	&-content{
+		text-align: center;
+		.categorie{
+			margin-bottom:30px;
+		}
+		p{
+			color:$white-color;
+			font-weight: 500;
+			display: none;
+		}
+		h2{
+			margin-bottom:20px;
+			color:$white-color;
+			a:hover{
+				color:$white-color;
+			}
+
+		}
+	 	.post-card-info{
+			margin:auto;
+			margin-top:30px;
+			ul{
+				justify-content: center;
+			}
+			li{
+				color:$eee;
+				font-weight: 700;
+				img{
+					display:none;
+				}
+			}
+	 	}
+	}
+}
+
+.carousel-hero{
+	.owl-carousel {
+		margin-bottom: 0px;
+		position: relative;
+	}
+	.owl-nav{
+		text-align: center;
+		line-height: 0;
+		margin-bottom:0px;
+		position: absolute;
+		height: 40px;
+		top:50%;
+		transform: translateY(-50%);
+		width:100%;
+		.owl-prev,
+		.owl-next{
+			background-color:transparent !important;
+			color:$white-color !important;
+			margin-right: 0px;
+			border-radius: $rd-circle;
+			width: 35px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			font-size: 18px;
+			position: absolute;
+			border:1px solid $white-color !important;
+			@include easeInOut(0.5);
+		
+			&:after{
+				border: 0 none;
+				line-height: normal;
+				vertical-align: middle;
+				font-family: "Font Awesome 5 Free";
+				font-weight: 400;
+			}
+			span{
+			  display:none;	
+			}
+			&:hover{
+				background-color: $base-color !important;
+				color:$white-color !important;
+				border:1px solid $base-color !important;
+			}
+		}
+		.owl-prev{
+			left:30px;
+			&:after{
+				content: "\f104";	
+			}
+		}
+		.owl-next{
+			right:30px;
+			&:after{
+				content: "\f105";
+			}
+		}
+	}
+}
+
+.top{
+	margin-bottom:0px;
+	position: relative;
+	background-position: center center;
+	background-size: cover;
+	height: calc(100vh - 65px);
+	z-index: 1;
+	&:after{
+		@include after(0,0,100%,100%);
+		background-color:rgba($black-color,0.5);
+		opacity: 1;
+		bottom:0;
+		z-index: -1;	
+	}
+	&-content{
+		border:1px solid green;
+		padding:30px;
+		 width:800px;
+		 margin-right:400px;
+		 h2{
+			 color:$white-color;
+			 margin:20px 0px;
+		 }
+
+	}	
+}
+
+
+
+
+
+
