@@ -2,7 +2,7 @@
 
 namespace Source; 
 
-// use Exceptions\RouteNotFoundException;
+use Exceptions\RouteNotFoundException;
 use Router\Router;
 
 class App

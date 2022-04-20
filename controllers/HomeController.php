@@ -14,7 +14,7 @@ class HomeController
 
         foreach($statement->fetchAll() as $admin)
         {
-            var_dump($admin);
+            // dump($admin);
         }
 
         return Renderer::make('index');

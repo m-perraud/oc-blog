@@ -11,14 +11,7 @@ class User
     public function __construct()
     {
         try {
-            static::$pdo = new \PDO('
-            mysql:dbname=' . Constant::DB_NAME . ';host:host' . Constant::DB_NAME, 
-            Constant::DB_USERNAME,
-            Constant::DB_PASSWORD,
-            [
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ,
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-            ]);
+            static::$pdo = new \PDO('mysql:host=' . Constant::DB_HOST . ';dbname=' . Constant::DB_NAME , Constant::DB_USERNAME , Constant::DB_PASSWORD);
         } catch (\PDOException $e)
         {
             echo $e->getMessage(); 

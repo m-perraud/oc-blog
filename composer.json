@@ -12,5 +12,8 @@
             "Source\\" : "src/", 
             "Models\\" : "Models/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
     }
 }
