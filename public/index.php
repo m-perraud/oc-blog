@@ -17,6 +17,3 @@ $router->register('/posts', ['Controllers\PostsController', 'posts']);
 (new App($router, $_SERVER['REQUEST_URI']))->run();
 
 
-
-
-

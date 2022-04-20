@@ -25,4 +25,9 @@ class User
             die();
         }
     }
+
+    public function getPDO(): \PDO
+    {
+        return static::$pdo;
+    }
 }
