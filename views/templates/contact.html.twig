@@ -1,38 +1,9 @@
-<!doctype html>
-<html lang="en">
+{% extends "main.html.twig" %}
 
-<head>
-    <!-- Meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- favicon -->
-    <link rel="icon" sizes="16x16" href="assets/img/favicon.png">
+{% block body %}
 
-    <!-- Title -->
-    <title> NoonPost. - Personal Blog HTML Template </title>
-    
-    <!-- Font Google -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    
-    <!-- CSS Plugins -->
-    <link rel="stylesheet" href="assets/css/all.css">
-    <link rel="stylesheet" href="assets/css/elegant-font-icons.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
-    
-    <!-- main style -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
-</head>
 
-<body>  
-    <!--loading -->
-    <div class="loading">
-        <div class="circle"></div>
-    </div>
-    <!--/-->
 
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -40,8 +11,8 @@
             <!--logo-->
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/img/logo-dark.png" alt="" class="logo-dark">
-                    <img src="assets/img/logo-white.png" alt="" class="logo-white">
+                    <img src="/img/logo-dark.png" alt="" class="logo-dark">
+                    <img src="/img/logo-white.png" alt="" class="logo-white">
                 </a>
             </div>
             <!--/-->
@@ -112,7 +83,7 @@
                     </li>
     
                     <li class="nav-item dropdown">
-                        <a class="nav-link  active dropdown-toggle" href="#" data-toggle="dropdown">Pages </a>
+                        <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">Pages </a>
                         <ul class="dropdown-menu fade-up">
                             <li>
                                 <a class="dropdown-item" href="about.html"> About </a>
@@ -121,7 +92,7 @@
                                 <a class="dropdown-item" href="author.html"> author </a>
                             </li>
                             <li>
-                                <a class="dropdown-item active " href="login.html"> Login </a>
+                                <a class="dropdown-item" href="login.html"> Login </a>
                             </li>
                             <li>
                                 <a class="dropdown-item " href="register.html"> Sign up </a>
@@ -132,8 +103,9 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html"> Contact </a>
+                        <a class="nav-link active" href="contact.html"> Contact </a>
                     </li>
+                 
                 </ul>
             </div>
             <!--/-->
@@ -183,35 +155,165 @@
     </nav>
     <!--/-->
 
-    <!--Login-->
-    <section class="section pt-55 mb-50">
-        <div class="container">
-            <div class="sign widget ">
-                <div class="section-title">
-                    <h5>Login</h5>
+    <!--contact us-->
+    <section class="section pt-50">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h5>Contact us</h5>
+                    </div>
                 </div>
-                <form  action="#" class="sign-form widget-form " method="post">
-                        <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username*" name="username" value="">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password*" name="password" value="">
-                    </div>
-                    <div class="sign-controls form-group">
-                        <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                            <label class="custom-control-label" for="rememberMe">Remember Me</label>
+            </div>
+            
+            <div class="row mb-20">
+                <div class="col-lg-8 mt-30">
+                    <div class="contact">
+                        <div class="google-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.5761533072873!2d-78.19644468515456!3d38.91080675375955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b5c5dc680d0b2b%3A0x1e9ff0b6bb7a2f87!2s1000%20Proctor%20Ln%2C%20Front%20Royal%2C%20VA%2022630%2C%20%C3%89tats-Unis!5e0!3m2!1sfr!2sma!4v1578068093888!5m2!1sfr!2sma"
+                                allowfullscreen="">
+                            </iframe>
                         </div>
-                        <a href="#" class="btn-link  ml-auto">Forgot Password?</a>
+                        <form action="/php/mail.php" class="widget-form contact_form " method="POST" id="main_contact_form">
+                            <h6>Feel free to contact any time.</h6>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, repudiandae.</p>
+                            <div class="alert alert-success contact_msg" style="display: none" role="alert">
+                                Your message was sent successfully.
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Your Name*" required="required">
+                            </div>
+                        
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Your Email*" required="required">
+                            </div>
+                        
+                            <div class="form-group">
+                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Your Subject*" required="required">
+                            </div>
+                        
+                            <div class="form-group">
+                                <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Your Message*" required="required"></textarea>
+                            </div>
+                        
+                            <button type="submit" name="submit" class="btn-custom">Send Message</button>
+                        </form>
+                    </div> 
+                </div>
+                <div class="col-lg-4 max-width">
+                <!--widget-latest-posts-->
+                <div class="widget ">
+                    <div class="section-title">
+                        <h5>Latest Posts</h5>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn-custom">Login</button>
+                    <ul class="widget-latest-posts">
+                        <li class="last-post">
+                            <div class="image">
+                                <a href="post-default.html">
+                                    <img src="/img/latest/1.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="nb">1</div>
+                            <div class="content">
+                                <p>
+                                    <a href="post-default.html">5 Things I Wish I Knew Before Traveling to Malaysia</a>
+                                </p>
+                                <small>
+                                    <span class="icon_clock_alt"></span> January 15, 2021</small>
+                            </div>
+                        </li>
+                        <li class="last-post">
+                            <div class="image">
+                                <a href="post-default.html">
+                                    <img src="/img/latest/2.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="nb">2</div>
+                            <div class="content">
+                                <p>
+                                    <a href="post-default.html">Everything you need to know about visiting the Amazon.</a>
+                                </p>
+                                <small>
+                                    <span class="icon_clock_alt"></span> January 15, 2021</small>
+                            </div>
+                        </li>
+                        <li class="last-post">
+                            <div class="image">
+                                <a href="post-default.html">
+                                    <img src="/img/latest/3.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="nb">3</div>
+                            <div class="content">
+                                <p>
+                                    <a href="post-default.html">How to spend interesting vacation after hard work?</a>
+                                </p>
+                                <small>
+                                    <span class="icon_clock_alt"></span> January 15, 2021</small>
+                            </div>
+                        </li>
+                        <li class="last-post">
+                            <div class="image">
+                                <a href="post-default.html">
+                                    <img src="/img/latest/4.jpg" alt="...">
+                                </a>
+                            </div>
+                            <div class="nb">4</div>
+                            <div class="content">
+                                <p>
+                                    <a href="post-default.html">10 Best and Most Beautiful Places to Visit in Italy</a>
+                                </p>
+                                <small>
+                                    <span class="icon_clock_alt"></span> January 15, 2021</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--/-->
+                    
+                    <!--widget-instagram-->
+                    <div class="widget">
+                        <div class="section-title">
+                            <h5>Instagram</h5>
+                        </div>
+                        <ul class="widget-instagram">
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/1.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/2.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/3.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/4.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/5.jpg" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a class="image" href="#">
+                                    <img src="/img/instagram/6.jpg" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    
                     </div>
-                    
-                    <p class="form-group text-center">Don't have an account? <a href="register.html" class="btn-link">Create One</a> </p>
-                    
-                </form>
-            </div> 
+                    <!--/-->
+                </div>
+            </div>
+           
         </div>
     </section>        
 
@@ -220,7 +322,7 @@
         <div class="container-fluid">
             <div class="newslettre-width text-center">
                 <div class="newslettre-info">
-                    <h5>Subscribe to our Newslatter</h5>
+                    <h5>Subscribe to our Newsletter</h5>
                     <p> Sign up for free and be the first to get notified about new posts. </p>
                 </div>
                 <form action="#" class="newslettre-form">
@@ -255,24 +357,6 @@
         </div>
     </section>
     
-    <!--footer-->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright">
-                        <p>© Copyright 2021 <a href="#">AssiaGroupe</a>, All rights reserved.</p>
-                    </div>
-                    <div class="back">
-                        <a href="#" class="back-top">
-                            <i class="arrow_up"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <!--Search-form-->
     <div class="search">
         <div class="container-fluid">
@@ -288,21 +372,5 @@
         </div>
     </div>
     <!--/-->
-  
-  
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/js/jquery-3.5.0.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    
-    <!-- JS Plugins  -->
-    <script src="assets/js/ajax-contact.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/switch.js"></script>
-    
-    <!-- JS main  -->
-    <script src="assets/js/main.js"></script>
 
-
-</body>
-</html>
+{% endblock %}

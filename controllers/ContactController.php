@@ -1,13 +1,10 @@
 <?php 
 
 namespace Controllers; 
-
-use Source\Renderer;
-
-class ContactController
+class ContactController extends Controller
 {
-    public function contact(): Renderer
+    public function contact()
     {
-        return Renderer::make('contact');
+        $this->twig->display('contact.html.twig');
     }
 }

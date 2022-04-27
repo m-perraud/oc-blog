@@ -19,7 +19,7 @@ class Router
         $path = explode('?', $uri)[0];
         $action = $this->routes[$path] ?? null;
 
-        if (is_callable($action)) 
+        if (is_callable($action))
         {
             return $action();
         }

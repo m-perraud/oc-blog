@@ -2,22 +2,41 @@
 
 namespace Controllers; 
 
-use Source\Renderer;
 use Models\User;
+use Controllers\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
-    public function index(): Renderer
+    public function index()
     {
+        $this->twig->display('index.html.twig');
+
         $userModel = new User();
-        $statement = $userModel->getPDO()->query('SELECT * FROM admin');
+        $users = $userModel->getUser();
 
-        foreach($statement->fetchAll() as $admin)
+        foreach($users->fetchAll() as $user)
         {
-            // dump($admin);
+            dump($user);
         }
+    }
 
-        return Renderer::make('index');
+    public function about()
+    {
+        $this->twig->display('about.html.twig');
+    }
+
+    public function login()
+    {
+        $this->twig->display('login.html.twig');
+    }
+
+    public function register()
+    {
+        $this->twig->display('register.html.twig');
+    }
+
+    public function page404()
+    {
+        $this->twig->display('page404.html.twig');
     }
 }
-

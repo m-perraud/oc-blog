@@ -1,13 +1,15 @@
 <?php
 
 namespace Controllers;
-
-use Source\Renderer;
-
-class PostsController
+class PostsController extends Controller
 {
-    public function posts(): Renderer
+    public function posts()
     {
-        return Renderer::make('post-default');
+        $this->twig->display('blog-grid.html.twig');
+    }
+
+    public function postDetails()
+    {
+        $this->twig->display('post-default.html.twig');
     }
 }
