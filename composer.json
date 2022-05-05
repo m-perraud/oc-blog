@@ -9,8 +9,9 @@
             "Router\\": "Router/",
             "Exceptions\\": "Exceptions/", 
             "Controllers\\": "Controllers/",
-            "Source\\" : "src/", 
-            "Models\\" : "Models/"
+            "Source\\" : "Src/", 
+            "Models\\" : "Models/",
+            "Repository\\" : "Repository/"
         }
     },
     "require-dev": {

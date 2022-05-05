@@ -27,6 +27,7 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
         'R' => 
         array (
             'Router\\' => 7,
+            'Repository\\' => 11,
         ),
         'M' => 
         array (
@@ -62,11 +63,15 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
         ),
         'Source\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/Src',
         ),
         'Router\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Router',
+        ),
+        'Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Repository',
         ),
         'Models\\' => 
         array (

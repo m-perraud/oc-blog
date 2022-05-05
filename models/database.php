@@ -1,12 +1,11 @@
 <?php
 
-
-namespace Models; 
-
+namespace Models;
 use Source\Constant;
 
 class Database
 {
+    
     private static \PDO $pdo;
 
     public function __construct()
