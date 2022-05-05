@@ -2,23 +2,32 @@
 
 namespace Controllers; 
 
-use Models\User;
+use Models\UserModel;
 use Controllers\Controller;
+use Repository\UserRepository;
 
 class HomeController extends Controller
 {
+
     public function index()
     {
-        $this->twig->display('index.html.twig');
-
-        $userModel = new User();
-        $users = $userModel->getUser();
-
-        foreach($users->fetchAll() as $user)
-        {
-            dump($user);
-        }
+        // On créé un nouveau UserRepository
+        $userRepository = new UserRepository();
+        // On cherche la liste des users dans le userrepository
+        $users = $userRepository->findAllUsers();
+        
+        // On injecte dans la page index.html.twig, dans la variable 
+        // 'user' le contenu de la liste $users
+        return $this->twig->render('index.html.twig', [
+            'users' => $users,
+            'toto' => 'ceci est une string'
+        ]);
     }
+
+
+
+
+
 
     public function about()
     {
