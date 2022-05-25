@@ -14,11 +14,13 @@ class PostsController extends Controller
 
         $posts = $postsRepository->getOnePost($id);
         $comments = $commentsRepository->getAllComments($id);
+        $lastPosts = $postsRepository->getLastPosts();
 
         //dd($posts);
         return $this->twig->display('post-default.html.twig', [
             'posts' => $posts,
-            'comments' => $comments
+            'comments' => $comments,
+            'lastPosts' => $lastPosts
         ]);
     }
 

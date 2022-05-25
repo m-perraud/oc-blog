@@ -12,7 +12,7 @@ define('BASE_VIEW_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRE
 $router = new Router($_GET['url']);
 
 //$router->get('/', function(){ echo 'Je suis la Homepage'; });
-$router->get('/home', "Home#index");
+$router->get('/', "Home#index");
 $router->get('/posts/:id-:slug', "Posts#postDetails")->with('id', '[0-9]+')->with('slug', '([a-z\-0-9]+)');
 $router->get('/contact', "Contact#contact");
 $router->get('/about', "Home#about");
