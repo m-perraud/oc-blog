@@ -10,25 +10,26 @@
             <div class="row">
                 <div class="col-lg-8 mb-20">
                     <!--Post-single-->
+                    {% for post in posts %}
                     <div class="post-single">
                         <div class="post-single-image">
                             <img src="/img/blog/6.jpg" alt="">
                         </div>
                         <div class="post-single-content">
                             <a href="blog-grid.html" class="categorie">travel</a> 
-                            <h4>What the secrets you will know about jordan petra if visit it one day? </h4>
+                            
+                            <h4>{{ post.postTitle }} </h4>
                             <div class="post-single-info">
                                 <ul class="list-inline">
-                                    <li><a href="author.html"><img src="/img/author/1.jpg" alt=""></a></li>
-                                    <li><a href="author.html">David Smith</a> </li>
+                                    <li><a href="author.html">{{ post.postAuthor }}</a> </li>
                                     <li class="dot"></li>
-                                    <li>January 15, 2021</li>
+                                    <li>{{ post.postDate|date("d/m/Y") }}</li>
                                     <li class="dot"></li>
-                                    <li>3 comments</li>
+                                    <li>{{ comments|length }} comments</li>
                                 </ul>
                             </div>
                         </div>
-                  
+
                         <div class="post-single-body">
                             <p>
                                 Its sometimes her behaviour are contented. Do listening am eagerness oh objection collected. Together gay feelings continue
@@ -106,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                          
+
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
                                 irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
@@ -128,165 +129,34 @@
                                 irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                             </p>
                         </div>
+                    </div> {% endfor %}<!--/-->
 
-                        <div class="post-single-footer">
-                            <div class="tags">
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="blog-grid.html">Travel</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-grid.html">Nature</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-grid.html">tips</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-grid.html">forest</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-grid.html">beach</a>
-                                    </li>
-                                
-                                </ul>
-                            </div>
-                            <div class="social-media">
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#" class="color-facebook">
-                                            <i class="fab fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-instagram">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-youtube">
-                                            <i class="fab fa-youtube"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-pinterest">
-                                            <i class="fab fa-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>                           
-                        </div>
-                    </div> <!--/-->
-
-                    <!--next & previous-posts-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="widget">
-                                <div class="widget-next-post">
-                                    <div class="small-post">
-                                        <div class="image">
-                                            <a href="post-default.html">
-                                            <img src="/img/latest/1.jpg" alt="...">
-                                            </a>                                          
-                                        </div>
-                                        <div class="content">
-                                            <div>
-                                                <a class="link" href="post-default.html"><i class="arrow_left"></i>Preview post</a>
-                                            </div>
-                                            <a href="post-default.html">7 Healty Dinner Recipes for a Date Night at Home</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="widget">
-                                <div class="widget-previous-post">
-                                    <div class="small-post">
-                                        <div class="image">
-                                            <a href="post-default.html">
-                                               <img src="/img/blog/2.jpg" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <div>
-                                                <a class="link" href="post-default.html">
-                                                    <span> Next post</span>
-                                                    <span class="arrow_right"></span>
-                                                </a>
-                                            </div>
-                                            <a href="post-default.html">How to Choose Outfits for Work for woman and men</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!--/-->
-
+                    {% for comment in comments %}
                     <!--widget-comments-->
                     <div class="widget mb-50">
                         <div class="title">
-                            <h5>3 Comments</h5>
+                            <h5>{{ comments|length }} Comments</h5>
                         </div>
                         <ul class="widget-comments">
                             <li class="comment-item">
                                 <img src="/img/user/1.jpg" alt="">
                                 <div class="content">
                                     <ul class="info list-inline">
-                                        <li>Mohammed Ali</li>
+                                        <li>{{ comment.commentUsername }}</li>
                                         <li class="dot"></li>
-                                        <li> January 15, 2021</li>
+                                        <li> {{ comment.commentDate|date("d/m/Y") }} </li>
                                     </ul>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                        quod non fugiat aliquid sit similique!
+                                    <p>{{ comment.commentText }}
                                     </p>
                                     <div><a href="#" class="link"> <i class="arrow_back"></i> Reply</a></div>
                                 </div>
                             </li>
-                            <li class="comment-item">
-                                <img src="/img/author/1.jpg" alt="">
-                                <div class="content">
-                                    <ul class="info list-inline">
-                                        <li>Simon Albert</li>
-                                        <li class="dot"></li>
-                                        <li> January 15, 2021</li>
-                                    </ul>
-                                                      
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat quod non
-                                        fugiat aliquid sit similique!
-                                    </p>
-                                    <div>
-                                        <a href="#" class="link">
-                                            <i class="arrow_back"></i> Reply</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="comment-item">
-                                <img src="/img/user/2.jpg" alt="">
-                                <div class="content">
-                               
-                                    <ul class="info list-inline">
-                                        <li>Adam bobly</li>
-                                        <li class="dot"></li>
-                                        <li> January 15, 2021</li>
-                                    </ul>
-                    
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                        quod non fugiat aliquid sit similique!
-                                    </p>
-
-                                    <div>
-                                        <a href="#" class="link">
-                                            <i class="arrow_back"></i> Reply</a>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
-                       <!--Leave-comments-->
+                        {% endfor %}
+
+
+
+                        <!--Leave-comments-->
                         <div class="title">
                             <h5>Leave a Reply</h5>
                         </div>
@@ -317,7 +187,7 @@
                                     </div>
                                     <label>
                                         <input name="name" type="checkbox" value="1" required="required"> 
-                                       <span>save my name , email and website in this browser for the next time I comment.</span>                                   
+                                        <span>save my name , email and website in this browser for the next time I comment.</span>                                   
                                     </label>
                                 </div>
                                 <div class="col-12">
@@ -342,7 +212,7 @@
                             <p>
 
                             I'm David Smith, husband and father ,
-                             I love Photography,travel and nature. I'm working as a writer and blogger with experience
+                            I love Photography,travel and nature. I'm working as a writer and blogger with experience
                             of 5 years until now.
                         </p>
                     
@@ -398,160 +268,7 @@
                                     <small><span class="icon_clock_alt"></span> January 15, 2021</small>
                                 </div>
                             </li>
-                            <li class="last-post">
-                                <div class="image">
-                                    <a href="post-default.html">
-                                    <img src="/img/latest/2.jpg" alt="...">
-                                    </a> 
-                                </div>
-                                <div class="nb">2</div>
-                                <div class="content">
-                                    <p>
-                                        <a href="post-default.html">Everything you need to know about visiting the Amazon.</a>
-                                    </p>
-                                    <small>
-                                        <span class="icon_clock_alt"></span> January 15, 2021</small>
-                                </div>
-                            </li>
-                            <li class="last-post">
-                                <div class="image">
-                                    <a href="post-default.html">
-                                    <img src="/img/latest/3.jpg" alt="...">
-                                    </a>
-                                </div>
-                                <div class="nb">3</div>
-                                <div class="content">
-                                    <p>
-                                        <a href="post-default.html">How to spend interesting vacation after hard work?</a>
-                                    </p>
-                                    <small>
-                                        <span class="icon_clock_alt"></span> January 15, 2021</small>
-                                </div>
-                            </li>
-                            <li class="last-post">
-                                <div class="image">
-                                    <a href="post-default.html">
-                                     <img src="/img/latest/4.jpg" alt="...">
-                                    </a>
-                                </div>
-                                <div class="nb">4</div>
-                                <div class="content">
-                                    <p>
-                                        <a href="post-default.html">10 Best and Most Beautiful Places to Visit in Italy</a>
-                                    </p>
-                                    <small>
-                                        <span class="icon_clock_alt"></span> January 15, 2021</small>
-                                </div>
-                            </li>
                         </ul>
-                    </div>
-                    <!--/-->
-                   
-                    <!--widget-categories-->
-                    <div class="widget">
-                        <div class="section-title">
-                            <h5>Categories</h5>
-                        </div>
-                        <ul class="widget-categories">
-                            <li>
-                                <a href="#" class="categorie">Livestyle</a>
-                                <span class="ml-auto">22 Posts</span>
-                            </li>
-                            <li>
-                                <a href="#" class="categorie">Travel</a>
-                                <span class="ml-auto">18 Posts</span>
-                            </li>
-                            <li>
-                                <a href="#" class="categorie">Food</a>
-                                <span class="ml-auto">14 Posts</span>
-                            </li>
-                            <li>
-                                <a href="#" class="categorie">fashion</a>
-                                <span class="ml-auto">10 Posts</span>
-                            </li>
-                        </ul>
-                    </div><!--/-->
-                    
-                    <!--widget-instagram-->
-                    <div class="widget">
-                        <div class="section-title">
-                            <h5>Instagram</h5>
-                        </div>
-                        <ul class="widget-instagram">
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/1.jpg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/2.jpg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/3.jpg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/4.jpg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/5.jpg" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a class="image" href="#">
-                                    <img src="/img/instagram/6.jpg" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                            
-                    </div><!--/-->
-
-                    <!--widget-tags-->
-                    <div class="widget">
-                        <div class="section-title">
-                            <h5>Tags</h5>
-                        </div>
-                        <div class="widget-tags">
-                            <ul class="list-inline">
-                                <li>
-                                    <a href="blog-grid.html">Travel</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">Nature</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">tips</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">forest</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">beach</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">fashion</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">livestyle</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">healty</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">food</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">breakfast</a>
-                                </li>
-                        
-                            </ul>
-                        </div>
                     </div>
                     <!--/-->
                 </div> 

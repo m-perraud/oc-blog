@@ -2,20 +2,13 @@
 
 namespace Models;
 
-class CommentModel
+class PostModel
 {
     private string $idPost;
     private string $postTitle;
     private string $postText;
     private string $postDate;
     private string $adminId;
-
-    /*public function __construct(string $id, string $userMail, string $userStatus)
-    {
-        $this->id = $id;
-        $this->userMail = $userMail;
-        $this->userStatus = $userStatus;
-    } */
 
     public function getIdPost(): string
     {

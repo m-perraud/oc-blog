@@ -1,15 +1,25 @@
 <?php
 
 namespace Controllers;
+
+use Repository\CommentsRepository;
+use Repository\PostsRepository;
+
 class PostsController extends Controller
 {
-    public function posts()
+    public function postDetails($id)
     {
-        $this->twig->display('blog-grid.html.twig');
+        $postsRepository = new PostsRepository(); 
+        $commentsRepository = new CommentsRepository();
+
+        $posts = $postsRepository->getOnePost($id);
+        $comments = $commentsRepository->getAllComments($id);
+
+        //dd($posts);
+        return $this->twig->display('post-default.html.twig', [
+            'posts' => $posts,
+            'comments' => $comments
+        ]);
     }
 
-    public function postDetails()
-    {
-        $this->twig->display('post-default.html.twig');
-    }
 }

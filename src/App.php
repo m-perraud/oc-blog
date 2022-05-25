@@ -7,7 +7,7 @@ use Router\Router;
 
 class App
 {
-
+ /*
     public function __construct(private Router $router,private string $requestUri)
     {}
 
@@ -22,4 +22,5 @@ class App
             echo $e->getMessage();
         }
     }
+   */ 
 }

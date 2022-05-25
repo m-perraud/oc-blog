@@ -2,9 +2,9 @@
 
 namespace Controllers; 
 
-use Models\UserModel;
 use Controllers\Controller;
 use Repository\UserRepository;
+use Repository\PostsRepository;
 
 class HomeController extends Controller
 {
@@ -13,25 +13,30 @@ class HomeController extends Controller
     {
         // On créé un nouveau UserRepository
         $userRepository = new UserRepository();
+        $postsRepository = new PostsRepository();
+
         // On cherche la liste des users dans le userrepository
         $users = $userRepository->findAllUsers();
+        $posts = $postsRepository->getAllPosts();
         
+
         // On injecte dans la page index.html.twig, dans la variable 
         // 'user' le contenu de la liste $users
-        return $this->twig->render('index.html.twig', [
+        return $this->twig->display('index.html.twig', [
             'users' => $users,
-            'toto' => 'ceci est une string'
+            'toto' => 'ceci est une string', 
+            'posts' => $posts
         ]);
     }
 
-
-
-
-
-
     public function about()
     {
-        $this->twig->display('about.html.twig');
+        $postsRepository = new PostsRepository(); 
+        $posts = $postsRepository->getLastPosts();
+
+        return $this->twig->display('about.html.twig', [
+            'posts' => $posts
+        ]);
     }
 
     public function login()

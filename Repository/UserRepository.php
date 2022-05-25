@@ -8,7 +8,7 @@ use Models\UserModel;
 
 class UserRepository extends Database
 {
-    public function findAllUsers()
+    public function findAllUsers(): array
     {
         $sql = "SELECT * FROM user";
         $result = $this->getPDO()->query($sql);
@@ -16,4 +16,5 @@ class UserRepository extends Database
         $users = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);
         return $users;
     }
+
 }
