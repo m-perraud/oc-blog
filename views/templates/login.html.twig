@@ -11,26 +11,21 @@
                 <div class="section-title">
                     <h5>Login</h5>
                 </div>
-                <form  action="#" class="sign-form widget-form " method="post">
+                <form  action="/login" class="sign-form widget-form " method="post">
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username*" name="username" value="">
+                        <input type="text" class="form-control" placeholder="Identifiant*" name="username" value="">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password*" name="password" value="">
+                        <input type="password" class="form-control" placeholder="Mot de passe*" name="password" value="">
                     </div>
-                    <div class="sign-controls form-group">
-                        <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                            <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                        </div>
-                        <a href="#" class="btn-link  ml-auto">Forgot Password?</a>
-                    </div>
+                    
                     <div class="form-group">
                         <button type="submit" class="btn-custom">Login</button>
                     </div>
                     
-                    <p class="form-group text-center">Don't have an account? <a href="register.html" class="btn-link">Create One</a> </p>
-                    
+                    <p class="form-group text-center">Vous n'avez pas de compte ? <a href="/register" class="btn-link">Inscrivez-vous !</a> </p>
+                    </br>
+                    <center><i><b>{{ error }}</b></i></center>
                 </form>
             </div> 
         </div>

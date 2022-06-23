@@ -1,7 +1,10 @@
 {% extends "main.html.twig" %}
 
 
+
 {% block body %}
+
+
 
     <section class="section author full-space mb-40 pt-55">
         <div class="container-fluid">
@@ -11,32 +14,16 @@
                         <a href="author.html" class="image">
                             <img src="/img/author/1.jpg" alt="">
                         </a>
-                        <h6><span>Hi, I'm David Smith</span></h6>
+                        
+                        {% if session.auth %}
+                            <h6><span>Bonjour, {{ session.login }}</span></h6>
+                        {% endif %}
+                        </br>
                         <div class="link">{{ posts|length }} Articles</div>
                         <p> I'm David Smith, husband and father , I love Photography,travel 
                             and nature. I'm working as a writer
                             and blogger with experience of 5 years until now.
                         </p>
-                        
-                        <div class="social-media">
-                            <ul class="list-inline">
-                                <li>
-                                    <a href="https://www.facebook.com/melody.perraud" class="color-facebook">
-                                        <i class="fab fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/zillouh/" class="color-instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://twitter.com/Zillooh" class="color-twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +47,7 @@
                                         </a>
                                     </div>
                                 <div class="post-card-content">
-                                    <a href="blog-grid.html" class="categorie"> {{ post.postTitle }}</a>
+                                    <a href="/posts/{{ post.id }}" class="categorie"> {{ post.postTitle }}</a>
                                         <h5>
                                             <a href="post-default.html"></a>
                                         </h5>

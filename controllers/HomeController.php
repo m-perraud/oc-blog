@@ -2,6 +2,7 @@
 
 namespace Controllers; 
 
+use Models\UserModel;
 use Controllers\Controller;
 use Repository\UserRepository;
 use Repository\PostsRepository;
@@ -11,20 +12,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        // On créé un nouveau UserRepository
-        $userRepository = new UserRepository();
+
         $postsRepository = new PostsRepository();
-
-        // On cherche la liste des users dans le userrepository
-        $users = $userRepository->findAllUsers();
         $posts = $postsRepository->getAllPosts();
-        
 
-        // On injecte dans la page index.html.twig, dans la variable 
-        // 'user' le contenu de la liste $users
+
+
         return $this->twig->display('index.html.twig', [
-            'users' => $users,
-            'toto' => 'ceci est une string', 
             'posts' => $posts
         ]);
     }
@@ -46,7 +40,7 @@ class HomeController extends Controller
 
     public function register()
     {
-        $this->twig->display('register.html.twig');
+        return $this->twig->display('register.html.twig');
     }
 
     public function page404()

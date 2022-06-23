@@ -40,14 +40,16 @@ class PostModel
         $this->idPost = $idPost;
     }
 
-    public function setPostTitle(string $postTitle): void
+    public function setPostTitle(string $postTitle): PostModel
     {
         $this->postTitle = $postTitle;
+        return $this;
     }
 
-    public function setPostText(string $postText): void
+    public function setPostText(string $postText): PostModel
     {
         $this->postText = $postText;
+        return $this;
     }
 
     public function setPostDate(string $postDate): void

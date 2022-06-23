@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- favicon -->
+    <link rel="icon" sizes="16x16" href="/img/favicon.png">
+
+    <!-- Title -->
+    <title> {% block title %}Mon Blog{% endblock %} </title>
+
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/elegant-font-icons.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+
+    <!-- main style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+
+<body>
+    {% for post in posts %}
+    <!--Login-->
+    <section class="section pt-55 mb-50">
+        <div class="container">
+            <div class="">
+                <div class="section-title">
+                    <h5>Editer l'article : " {{ post.postTitle }} "</h5>
+                </div>
+                <form  action="/login" class="sign-form widget-form " method="post">
+                        <div class="form-group">
+                        <input type="text" class="" style="height: 30px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Titre" name="username"  value="{{ post.postTitle }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" contentEditable class="" style="height: 200px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Texte de l'article" name="password" value="{{ post.postText }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="image" class="form-control" placeholder="Image" name="password" value="">
+                    </div>
+                    <div style="height: 200px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" contentEditable></div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn-custom">Editer</button>
+                    </div>
+                    
+                    </br>
+                    <center><i><b>{{ error }}</b></i></center>
+                </form>
+            </div> 
+        </div>
+    </section>    
+    {% endfor %}
+</body>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.5.0.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- JS Plugins  -->
+    <script src="/js/ajax-contact.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/switch.js"></script>
+    
+    <!-- JS main  -->
+    <script src="/js/main.js"></script>
+
+</html>

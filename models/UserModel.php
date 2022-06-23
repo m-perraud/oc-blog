@@ -6,15 +6,10 @@ class UserModel
 {
     private string $id;
     private string $userMail;
-    private string $userStatus;
+    private string $adminLogin;
+    private string $adminPW;
+    private string $adminStatus;
 
-
-    /*public function __construct(string $id, string $userMail, string $userStatus)
-    {
-        $this->id = $id;
-        $this->userMail = $userMail;
-        $this->userStatus = $userStatus;
-    } */
 
     public function getId(): string
     {
@@ -24,11 +19,6 @@ class UserModel
     public function getUserMail(): string 
     {
         return $this->userMail;
-    }
-
-    public function getUserStatus(): string
-    {
-        return $this->userStatus;
     }
 
     public function setId(string $id): void
@@ -41,9 +31,34 @@ class UserModel
         $this->userMail = $userMail;
     }
 
-    public function setUserStatus(string $userStatus): void
+    public function getAdminLogin(): string 
     {
-        $this->userStatus = $userStatus;
+        return $this->adminLogin;
+    }
+
+    public function getAdminPW(): string
+    {
+        return $this->adminPW;
+    }
+
+    public function getAdminStatus(): string
+    {
+        return $this->adminStatus;
+    }
+
+    public function setAdminLogin(string $adminLogin): void
+    {
+        $this->adminLogin = $adminLogin;
+    }
+
+    public function setAdminPW(string $adminPW): void
+    {
+        $this->adminPW = $adminPW;
+    }
+
+    public function setAdminStatus(string $adminStatus): void
+    {
+        $this->userId = $adminStatus;
     }
 
 }
