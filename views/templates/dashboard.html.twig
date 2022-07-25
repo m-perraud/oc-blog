@@ -32,7 +32,7 @@
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex flex-column justify-content-center">
                           
-                            <h6 class="mb-0 text-sm">{{ user.adminLogin }}</h6>
+                            <h6 class="mb-0 text-sm">{{ user.adminLogin }} {{ user.id }}</h6>
                             <p class="text-xs text-secondary mb-0">{{ user.userMail }}</p>
                           
                           </div>
@@ -48,22 +48,26 @@
 
                       {% if user.adminStatus %}
                       <td class="align-middle">
-                        <form class="form-horizontal" action="/deletecred" method="post">
+                        <form class="form-horizontal" action="/changecred/{{ user.id }}" method="post">
                           <br />
                           <div class="form-actions">
-                          <input type="hidden" name="adminLogin" value=" {{ user.adminLogin }} " />  
+                          <input type="hidden" name="adminId" value=" {{ user.id }} " />  
                           <button type="submit" class="btn btn-danger" name="delete">Retirer les droits</button>
 </div>
+</form>
 </td>
                       {% else %} 
                         <td class="align-middle">
-                          <form class="form-horizontal" action="/addcred" method="post">
+                          <form class="form-horizontal" action="/changecred/{{ user.id }}" method="post">
                             <br />
                           <div class="form-actions">
-                            <button type="submit" class="btn" name="add">Ajouter les droits</button>
+                          <input type="hidden" name="adminId" value=" {{ user.id }} " />
+                            <button type="submit" class="btn" name="delete">Ajouter les droits</button>
                           </div> 
+                          </form>
                         </td>
                       {% endif %}
+                      {{ error }}
                     </tr>
                   {% endfor %}
                   </tbody>

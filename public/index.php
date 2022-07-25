@@ -22,7 +22,7 @@ $router->get('/about', "Home#about");
 $router->get('/login', "Home#login");
 $router->post('/login', "Auth#loginForm");
 $router->get('/logout', "Auth#logout");
-$router->get('/register', "Auth#register");
+$router->get('/register', "Home#register");
 $router->post('/register', "Auth#registUser");
 $router->get('/page404', "Home#page404");
 
@@ -30,10 +30,16 @@ $router->get('/page404', "Home#page404");
 
 $router->get('/dashboard', "Admin#dashAdmin");
 $router->post('/dashboard', "Admin#userManagement");
-$router->get('/deletecred/:id', "Admin#userManagment");
+$router->post('/changecred/:id', "Admin#userManagement")->with('id', '[0-9]+');
 
 $router->get('/postsadmin', "Admin#postsAdmin");
-$router->get('/editpost/:id', "Admin#editPost");
+$router->post('/deletepost/:id', "Admin#deletePost")->with('id', '[0-9]+');
+
+$router->get('/editpost/:id', "Admin#editPost")->with('id', '[0-9]+');
+$router->post('/updatepost', "Admin#updatePost");
+
+$router->get('/commentadmin', "Admin#commentAdmin");
+$router->post('/deletecomment/:id', "Admin#deleteComment")->with('id', '[0-9]+');
 
 $router->run();
 

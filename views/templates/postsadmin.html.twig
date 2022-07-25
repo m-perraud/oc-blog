@@ -49,8 +49,15 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ comments|length }}</span>
                         </td>
                         <td class="align-middle text-center text-sm">
-                        <button type="submit" class="btn btn-gradient-success" name="update">Editer</button>
+                        <form class="form-horizontal" action="/deletepost/{{ post.id }}" method="post">
+                            <br />
+                        <div class="form-actions">
+                        <input type="hidden" name="postId" value=" {{ post.id }} " />
+                        <a href="/editpost/{{ post.id }}" class="btn btn-gradient-success">Editer</a>
                         <button type="submit" class="btn btn-danger" name="delete">Supprimer</button>
+                        {{ error }}
+                        </div>
+                        </form>
                         </td>
                     </tr>
 

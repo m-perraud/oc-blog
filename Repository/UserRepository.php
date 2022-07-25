@@ -17,11 +17,17 @@ class UserRepository extends Database
         //dd($result->fetchAll());
         $users = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);
         return $users;
-
-
     }
 
-    public function verifyAdminLogin($loginPost, $passwordPost)
+    public function findOneUser($adminId)
+    {
+        $sql = "SELECT * FROM user WHERE ID = $adminId";
+        $result = $this->getPDO()->query($sql);
+        $posts = $result->fetchObject(UserModel::class);
+        return $posts;
+    }
+
+    public function verifyAdminLogin($loginPost)
     {
         $sql = "SELECT * FROM user WHERE adminLogin = \"$loginPost\"";
         $result = $this->getPDO()->query($sql);
@@ -36,7 +42,7 @@ class UserRepository extends Database
 
         $sql = "INSERT INTO user (`userMail`, `adminLogin`, `adminPW`) 
         VALUES 
-        (\"$registerLogin\", \"$registerPW\", \"$registerMail\")";
+        (\"$registerMail\", \"$registerLogin\", \"$registerPW\" )";
 
         $result = $this->getPDO()->query($sql);
         //dd($result->fetchAll());
@@ -45,10 +51,11 @@ class UserRepository extends Database
         return $user;
     }
 
-    public function updateAdmin($adminLogin)
+    public function updateAdmin($adminId)
     {
-        $sql = "UPDATE user SET adminStatus = 0 WHERE adminLogin = $adminLogin";
 
+        $sql = "UPDATE user SET adminStatus = (CASE adminStatus WHEN 1 THEN 0 ELSE 1 END) 
+        WHERE id = $adminId";
         $result = $this->getPDO()->query($sql);
         //dd($result->fetchAll());
         $user = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);

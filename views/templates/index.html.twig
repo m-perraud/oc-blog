@@ -42,14 +42,14 @@
                             <div class="card">
                                 <div class="post-card">
                                     <div class="post-card-image">
-                                        <a href="post-default.html">
+                                        <a href="/posts/{{ post.id }}">
                                             <img src=" {{ post.postImage }} " alt="">
                                         </a>
                                     </div>
                                 <div class="post-card-content">
                                     <a href="/posts/{{ post.id }}" class="categorie"> {{ post.postTitle }}</a>
                                         <h5>
-                                            <a href="post-default.html"></a>
+                                            <a href="/posts/{{ post.id }}"></a>
                                         </h5>
                                             <p>{{ post.postText|slice(0, 200) ~ '…' }}
                                             </p>
@@ -59,7 +59,7 @@
                                             <a href="author.html"></a>
                                         </li>
                                         <li>
-                                            <a href="author.html">{{ post.postAuthor }}</a>
+                                            <a href="/posts/{{ post.id }}">{{ post.postAuthor }}</a>
                                         </li>
                                         <li class="dot"></li>
                                         <li>{{ post.postDate|date("d/m/Y") }}</li>

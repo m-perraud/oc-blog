@@ -16,8 +16,6 @@ class HomeController extends Controller
         $postsRepository = new PostsRepository();
         $posts = $postsRepository->getAllPosts();
 
-
-
         return $this->twig->display('index.html.twig', [
             'posts' => $posts
         ]);

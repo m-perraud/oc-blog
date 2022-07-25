@@ -38,18 +38,26 @@
                 <div class="section-title">
                     <h5>Editer l'article : " {{ post.postTitle }} "</h5>
                 </div>
-                <form  action="/login" class="sign-form widget-form " method="post">
+                <form  action="/updatepost" class="sign-form widget-form " method="post">
+                    <input type="hidden" name="postId" value=" {{ post.id }} " />
                         <div class="form-group">
-                        <input type="text" class="" style="height: 30px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Titre" name="username"  value="{{ post.postTitle }}">
+                        <textarea required class="form-control" contentEditable style="height: 30px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Titre" name="title">
+                        {{ post.postTitle }}                        
+                        </textarea>
+                        </div>
+                    <div class="form-group">
+                        <textarea required class="form-control" contentEditable style="height: 200px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Texte de l'article" name="text">
+                        {{ post.postText }}
+                        </textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text" contentEditable class="" style="height: 200px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="Texte de l'article" name="password" value="{{ post.postText }}">
+                        <img src="{{ post.postImage }}" style="height: 40%; width: 40%; border: 1px solid black; padding: 5px; overflow: auto;" alt="..." class="img-thumbnail">
                     </div>
-                    <div class="form-group">
-                        <input type="image" class="form-control" placeholder="Image" name="password" value="">
-                    </div>
-                    <div style="height: 200px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" contentEditable></div>
-                    
+                        <div class="form-group">
+                        <textarea required class="form-control" contentEditable style="height: 30px; width: 100%; border: 1px solid black; padding: 5px; overflow: auto;" placeholder="URL de l'image" name="URL">
+                        {{ post.postImage }}                        
+                        </textarea>
+                        </div>
                     <div class="form-group">
                         <button type="submit" class="btn-custom">Editer</button>
                     </div>

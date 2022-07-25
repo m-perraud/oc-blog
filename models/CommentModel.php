@@ -44,6 +44,11 @@ class CommentModel
         return $this->commentDate;
     }
 
+    public function getCommentStatus(): string
+    {
+        return $this->commentStatus;
+    }
+
     public function getPostId(): string
     {
         return $this->postId;
@@ -74,9 +79,15 @@ class CommentModel
         $this->commentDate = $commentDate;
     }
 
+    public function setCommentStatus(string $commentStatus): void
+    {
+        $this->commentStatus = $commentStatus;
+    }
+
     public function setPostId(string $postId): void
     {
         $this->postId = $postId;
     }
+
 }
 

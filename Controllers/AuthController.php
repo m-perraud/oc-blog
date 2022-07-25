@@ -4,8 +4,6 @@ namespace Controllers;
 
 use Repository\UserRepository;
 
-
-
 class AuthController extends Controller
 {
 
@@ -17,10 +15,11 @@ class AuthController extends Controller
     public function loginForm()
     {
         $loginPost = $_POST['username'];
-        $passwordPost = password_hash($_POST['password'], PASSWORD_ARGON2I);
+        //$passwordPost = password_hash($_POST['password'], PASSWORD_ARGON2I);
+        $passwordPost = $_POST['password'];
 
         $userRepository = new UserRepository();
-        $users = $userRepository->verifyAdminLogin($loginPost, $passwordPost);
+        $users = $userRepository->verifyAdminLogin($loginPost);
 
         if (isset($loginPost) &&  isset($passwordPost)) {
             foreach ($users as $user) {
@@ -49,17 +48,16 @@ class AuthController extends Controller
     {
         if (isset($_SESSION['auth'])) {
 
-            // Delete the session vars by clearing the $_SESSION array
             $_SESSION = array();
 
-            // Delete the session cookie by setting its expiration to an hour ago (3600)
-            if (isset($_COOKIE[session_name()])) {      setcookie(session_name(), '', time() - 3600);    }
+            if (isset($_COOKIE[session_name()])) 
+            {
+                setcookie(session_name(), '', time() - 3600);
+            }
 
-            // Destroy the session
             session_destroy();
             } 
 
-        // Redirect to the home page
         header('Location: /');
     }
 

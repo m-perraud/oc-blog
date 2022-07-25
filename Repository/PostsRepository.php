@@ -19,8 +19,7 @@ class PostsRepository extends Database
 
     public function getAllPosts()
     {
-
-        $sql = "SELECT * FROM posts ";
+        $sql = "SELECT * FROM posts";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
@@ -44,17 +43,18 @@ class PostsRepository extends Database
         return $posts;
     }
 
-    public function updatePost(PostModel $post)
+    public function updatePost($titlePost, $textPost, $urlPost, $postId)
     {
-        $sql = "UPDATE posts SET 'postTitle'=\"$post->getPostTitle()\", 'postText'=\"$newText\", 'postAuthor'=\"$newAuthor\", 'postImage'=\"$newImage\"";
+        $sql = "UPDATE posts SET postTitle = \"$titlePost\", postText = \"$textPost\", postImage = \"$urlPost\" WHERE id = \"$postId\"";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
+    
 
-    public function deletePost($id)
+    public function deletePost($postId)
     {
-        $sql = "DELETE FROM posts WHERE ID = $id";
+        $sql = "DELETE FROM posts WHERE ID = $postId";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
