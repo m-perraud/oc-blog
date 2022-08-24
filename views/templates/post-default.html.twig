@@ -13,7 +13,7 @@
                     {% for post in posts %}
                     <div class="post-single">
                         <div class="post-single-image">
-                            <img src=" {{ post.postImage }} " alt="">
+                            <img src="/img/posts/{{ post.postImage }}" alt="">
                         </div>
                         <div class="post-single-content">
                             
@@ -63,35 +63,29 @@
                         <div class="title">
                             <h5>Leave a Reply</h5>
                         </div>
-                        <form class="widget-form" action="#" method="POST" id="main_contact_form">
-                            <p>Your email adress will not be published ,Requied fileds are marked*.</p>
+                        <form class="widget-form" action="/createcomment" method="POST" id="main_contact_form">
+                        {% for post in posts %}
+                        <input type="hidden" name="postId" value=" {{ post.id }} " />
+                        {% endfor %}
+                            <p>Your email adress will not be published.</p>
                             <div class="alert alert-success contact_msg" style="display: none" role="alert">
                                 Your message was sent successfully.
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*" required="required"></textarea>
+                                        <textarea required name="text" id="message" cols="30" rows="5" class="form-control" placeholder="Comment"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name*" required="required">
+                                        <input required type="text" name="username" id="name" class="form-control" placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email*" required="required">
+                                        <input required type="email" name="email" id="email" class="form-control" placeholder="Email" >
                                     </div>
-                                </div>
-                                <div class="col-12 mb-20">
-                                    <div class="form-group">
-                                        <input type="text" name="website" id="website" class="form-control" placeholder="website">
-                                    </div>
-                                    <label>
-                                        <input name="name" type="checkbox" value="1" required="required"> 
-                                        <span>save my name , email and website in this browser for the next time I comment.</span>                                   
-                                    </label>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" name="submit" class="btn-custom">

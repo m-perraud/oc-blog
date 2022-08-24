@@ -12,21 +12,47 @@ class AuthController extends Controller
     public $loginPost;
     public $passwordPost;
 
+
+
+    public function registUser()
+    {
+
+        $registerLogin = $_POST['username'];
+        $registerPW = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $registerMail = strip_tags($_POST['email']);
+
+        $userRepository = new UserRepository();
+
+        if($_POST && isset($registerLogin) && isset($registerPW) && isset($registerMail))
+        {
+
+            $user = $userRepository->registerUser($registerLogin, $registerPW, $registerMail);
+
+            $success = 'Votre demande d\'inscription a été envoyée aux administrateurs. Vous serez recontacté(e) sous peu.'; 
+            return $this->twig->display('register.html.twig', 
+                [
+                    'success' => $success
+                ]);
+            }
+
+            $this->twig->display('login.html.twig');
+    }
+
     public function loginForm()
     {
         $loginPost = $_POST['username'];
-        //$passwordPost = password_hash($_POST['password'], PASSWORD_ARGON2I);
         $passwordPost = $_POST['password'];
 
         $userRepository = new UserRepository();
         $users = $userRepository->verifyAdminLogin($loginPost);
+
 
         if (isset($loginPost) &&  isset($passwordPost)) {
             foreach ($users as $user) {
                 if (
                     $user->getAdminLogin() === $loginPost
                     &&
-                    $user->getAdminPW() === $passwordPost
+                    password_verify($passwordPost, $user->getAdminPW())
                     &&
                     $user->getAdminStatus() == 1
                 ) {
@@ -59,30 +85,6 @@ class AuthController extends Controller
             } 
 
         header('Location: /');
-    }
-
-    public function registUser()
-    {
-
-        $registerLogin = $_POST['username'];
-        $registerPW = password_hash($_POST['password'], PASSWORD_ARGON2I);
-        $registerMail = strip_tags($_POST['email']);
-
-        $userRepository = new UserRepository();
-
-        if($_POST && isset($registerLogin) && isset($registerPW) && isset($registerMail))
-        {
-
-            $user = $userRepository->registerUser($registerLogin, $registerPW, $registerMail);
-
-            $success = 'Votre demande d\'inscription a été envoyée aux administrateurs. Vous serez recontacté(e) sous peu.'; 
-            return $this->twig->display('register.html.twig', 
-                [
-                    'success' => $success
-                ]);
-            }
-
-            $this->twig->display('login.html.twig');
     }
 
 }

@@ -32,16 +32,11 @@
                     <span class="text-xs">Comment: <span class="text-dark ms-sm-2 font-weight-bold">{{ comment.commentText  }}</span></span>
                     </div>
                     <div class="ms-auto text-end">
-
-
-                    <form class="form-horizontal" action="/deletecomment/{{ comment.id }}" method="post">
-                    <div class="form-actions">
-                    <input type="hidden" name="commentId" value=" {{ comment.id }} " />       
-
-                    <button type="submit" class="btn btn-success" name="validate">Valider</button>
+                    <form class="form-horizontal" action="/deletecommentlist/{{ comment.id }}" method="post">
+                    <input type="hidden" name="commentId" value=" {{ comment.id }} " />
+                            <br />
+                        <div class="form-actions">
                     <button type="submit" class="btn btn-danger" name="delete">Supprimer</button>
-
-                    
                     </div>
                     </form>
                     </div>

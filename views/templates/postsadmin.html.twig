@@ -19,6 +19,7 @@
 
 
                         <thead>
+
                             <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Titre</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Auteur</th>
@@ -29,9 +30,10 @@
 
 
                     <tbody>
+                    <a href="/createpost" class="btn btn-success" style="margin-left:40px;">CREER UN NOUVEL ARTICLE</a>
                     {% for post in posts %}
 
-                        <tr>
+                        <tr>                                    
                         <td>
                             <div class="d-flex px-2 py-1">
                             <div>
@@ -49,6 +51,8 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ comments|length }}</span>
                         </td>
                         <td class="align-middle text-center text-sm">
+
+                        
                         <form class="form-horizontal" action="/deletepost/{{ post.id }}" method="post">
                             <br />
                         <div class="form-actions">
@@ -67,6 +71,9 @@
                 </div>
             </div>
             </div>
+
+
+
         </div>
         </div>
     </div>

@@ -19,6 +19,16 @@ class UserRepository extends Database
         return $users;
     }
 
+    public function findAllAdmins(): array
+    {
+        
+        $sql = "SELECT * FROM user WHERE adminStatus = 1";
+        $result = $this->getPDO()->query($sql);
+        //dd($result->fetchAll());
+        $users = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);
+        return $users;
+    }
+
     public function findOneUser($adminId)
     {
         $sql = "SELECT * FROM user WHERE ID = $adminId";
