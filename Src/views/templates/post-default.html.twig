@@ -1,0 +1,181 @@
+{% extends "main.html.twig" %}
+
+
+{% block body %}
+
+
+    <!--post-default-->
+    <section class="section pt-55 ">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 mb-20">
+                    <!--Post-single-->
+                    {% for post in posts %}
+                    <div class="post-single">
+                        <div class="post-single-image">
+                            <img src="/img/posts/{{ post.postImage }}" alt="">
+                        </div>
+                        <div class="post-single-content">
+                            
+                            <h4>{{ post.postTitle }} </h4>
+
+                            <h6>{{ post.postChapo }} </h6>
+                            </br>
+                            <div class="post-single-info">
+                                <ul class="list-inline">
+                                    <li><a href="author.html">{{ post.adminLogin }}</a> </li>
+                                    <li class="dot"></li>
+                                    <li>{{ post.postDate|date("d/m/Y") }}</li>
+                                    <li class="dot"></li>
+                                    <li>{{ comments|length }} comments</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="post-single-body">
+                            {{ post.postText|raw }}
+                        </div>
+                    </div> {% endfor %}<!--/-->
+
+
+                    <!--widget-comments-->
+                    <div class="widget mb-50">
+                    
+                        <div class="title">
+                            <h5>{{ comments|length }} Comments</h5>
+                        </div>
+                        {% for comment in comments %}
+                        <ul class="widget-comments">
+                            <li class="comment-item">
+                                <div class="content">
+                                    <ul class="info list-inline">
+                                        <li><b>{{ comment.commentUsername }}</b></li>
+                                        <li class="dot"></li>
+                                        <li> <b>{{ comment.commentDate|date("d/m/Y") }}</b> </li>
+                                    </ul>
+                                    <p>{{ comment.commentText }}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>                
+                        {% endfor %}
+
+
+                        <!--Leave-comments-->
+                        <div class="title">
+                            <h5>Leave a Reply</h5>
+                        </div>
+                        <form class="widget-form" action="/createcomment" method="POST" id="main_contact_form">
+                        {% for post in posts %}
+                        <input type="hidden" name="postId" value=" {{ post.id }} " />
+                        {% endfor %}
+                            <p>Your email adress will not be published.</p>
+                            <div class="alert alert-success contact_msg" style="display: none" role="alert">
+                                Your message was sent successfully.
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea required name="text" id="message" cols="30" rows="5" class="form-control" placeholder="Comment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input required type="text" name="username" id="name" class="form-control" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input required type="email" name="email" id="email" class="form-control" placeholder="Email" >
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" name="submit" class="btn-custom">
+                                        Post Comment
+                                    </button>
+                                </div> 
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 max-width">
+                    <!--widget-author-->
+                    <div class="widget">
+                        <div class="widget-author">
+                            <a href="author.html" class="image">
+                                <img src="/img/author/1.jpg" alt="">
+                            </a>
+                            <h6>
+                                <span>Hi, I'm David Smith</span>
+                            </h6>
+                            <p>
+
+                            I'm David Smith, husband and father ,
+                            I love Photography,travel and nature. I'm working as a writer and blogger with experience
+                            of 5 years until now.
+                        </p>
+                    
+                    
+                            <div class="social-media">
+                                <ul class="list-inline">
+                                    <li>
+                                        <a href="#" class="color-facebook">
+                                            <i class="fab fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="color-instagram">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="color-twitter">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="color-youtube">
+                                            <i class="fab fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="color-pinterest">
+                                            <i class="fab fa-pinterest"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/-->
+
+                    <!--widget-latest-posts-->
+                    <div class="widget ">
+                        <div class="section-title">
+                            <h5>Latest Posts</h5>
+                        </div>
+                        <ul class="widget-latest-posts">
+                            {% for lastPost in lastPosts %}
+                            <li class="last-post">
+                                <div class="content">
+                                    <p>
+                                        <a href="/posts/{{lastPost.id }}">{{ lastPost.postTitle }} </a>
+                                    </p>
+                                    {{ lastPost.postChapo|slice(0, 30) ~ '…' }}
+                                    <small>
+                                        <span class="icon_clock_alt"></span> {{ lastPost.postDate|date("d/m/Y") }}</small>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!--/-->
+                </div> 
+            </div>
+        </div>
+    </section><!--/-->
+
+
+{% endblock %}

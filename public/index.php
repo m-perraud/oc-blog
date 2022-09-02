@@ -1,9 +1,5 @@
 <?php
 
-//session_start();
-//$_SESSION['role'] = 'administrateur';
-
-//use Source\App;
 use Router\Router;
 
 
@@ -15,6 +11,7 @@ define('BASE_VIEW_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRE
 $router = new Router($_GET['url']);
 
 $router->get('/', "Home#index");
+$router->get('/allposts', "Posts#grid");
 //$router->get('/posts/:id-:slug', "Posts#postDetails")->with('id', '[0-9]+')->with('slug', '([a-z\-0-9]+)');
 $router->get('/posts/:id', "Posts#postDetails")->with('id', '[0-9]+');
 $router->post('/createcomment', "Posts#newComment");
@@ -26,6 +23,8 @@ $router->get('/logout', "Auth#logout");
 $router->get('/register', "Home#register");
 $router->post('/register', "Auth#registUser");
 $router->get('/page404', "Home#page404");
+$router->get('/page403', "Home#page403");
+$router->get('/page500', "Home#page500");
 
 
 
@@ -48,6 +47,8 @@ $router->post('/deletecommentlist/:id', "Admin#deleteCommentList")->with('id', '
 
 $router->get('/createpost', "Admin#createPost");
 $router->post('/newpost', "Admin#newPost");
+
+$router->post('/sendmail', "Contact#sendMail");
 
 $router->run();
 
