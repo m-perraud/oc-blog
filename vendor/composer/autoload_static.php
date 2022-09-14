@@ -13,6 +13,10 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
     );
 
     public static $prefixLengthsPsr4 = array (
+        'U' => 
+        array (
+            'Utils\\' => 6,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -28,6 +32,10 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
         array (
             'Router\\' => 7,
             'Repository\\' => 11,
+        ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -45,6 +53,10 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
     );
 
     public static $prefixDirsPsr4 = array (
+        'Utils\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Src/Utils',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -67,23 +79,27 @@ class ComposerStaticInitf8064d9299b45d9962c7b2dd500a2686
         ),
         'Router\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Router',
+            0 => __DIR__ . '/../..' . '/Src/Router',
         ),
         'Repository\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Repository',
+            0 => __DIR__ . '/../..' . '/Src/Repository',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Models\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Models',
+            0 => __DIR__ . '/../..' . '/Src/Models',
         ),
         'Exceptions\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Exceptions',
+            0 => __DIR__ . '/../..' . '/Src/Exceptions',
         ),
         'Controllers\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Controllers',
+            0 => __DIR__ . '/../..' . '/Src/Controllers',
         ),
         'Colors\\' => 
         array (

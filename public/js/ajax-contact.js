@@ -19,7 +19,7 @@
     // fail function
     function fail_func(data) {
         message.fadeIn().removeClass('alert-success').addClass('alert-success');
-     
+    
         message.text(data.responseText);
         setTimeout(function () {
             message.fadeOut();

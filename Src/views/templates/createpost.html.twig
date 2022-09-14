@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- favicon -->
+    <link rel="icon" sizes="16x16" href="/img/favicon.png">
+
+    <!-- Title -->
+    <title> {% block title %}Mon Blog{% endblock %} </title>
+
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/elegant-font-icons.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/owl.carousel.css">
+
+    <!-- main style -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <script src="https://cdn.tiny.cloud/1/psfbd1aue8wnelpmk35wmekxv017eqok0oo3hbtrftmq0nyq/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'a_tinymce_plugin',
+            a_plugin_option: true,
+            a_configuration_option: 2000
+        });
+    </script>
+</head>
+
+<body>
+    <!--Login-->
+    <section class="section pt-55 mb-50">
+        <div class="container">
+            <div class="">
+                <div class="section-title">
+                    <h5>CREER UN NOUVEL ARTICLE</h5>
+                </div>
+                <form  action="/newpost" class="sign-form widget-form " method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <textarea required class="form-control" contentEditable style="border: 1px solid black;" placeholder="Titre" name="title"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea required class="form-control" contentEditable style="border: 1px solid black;" placeholder="Chapô" name="chapo"></textarea>
+                        </div>
+
+                    <div class="form-group">
+                    <textarea id="mytextarea" placeholder="Texte" name="text"></textarea>
+                    </div>{% if session.auth %}
+                    <input type="hidden" name="author" value=" {{ session.id }} " />                 
+                    
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="article_image">Image:</label>
+                        <input type="file" id="file" class="form-control" style="height: 40%; width: 35.5%; border: 1px solid black; padding: 5px; overflow: auto;" name="file">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn-custom">Editer</button>
+                    </div>
+                    
+                    </br>
+                    <center><i><b>{{ error }}</b></i></center>
+                </form>
+            </div> 
+        </div>
+    </section>    
+</body>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/js/jquery-3.5.0.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- JS Plugins  -->
+    <script src="/js/ajax-contact.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/switch.js"></script>
+    
+    <!-- JS main  -->
+    <script src="/js/main.js"></script>
+
+</html>

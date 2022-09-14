@@ -1,0 +1,46 @@
+{% extends "main.html.twig" %}
+
+
+{% block body %}
+
+<!doctype html>
+
+
+    <!--register-->
+    <section class="section pt-55 mb-50">
+        <div class="container-fluid">
+            <div class="sign widget">
+                <div class="section-title">
+                    <h5>S'inscrire</h5>
+                </div>
+                
+                <form  action="/register" class="sign-form widget-form " method="post">
+                        <div class="form-group">
+                        <input required type="text" class="form-control" placeholder="Identifiant*" name="username" value="">
+                    </div>
+                    <div class="form-group">
+                    <input required type="email" class="form-control" placeholder="Adresse mail*" name="email" value="">
+                    </div>
+                    <div class="form-group">
+                    
+                    <input required type="password" class="form-control" placeholder="Mot de passe*" name="password" value="">
+                    </div>
+                    <div class="sign-controls form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rememberMe">
+                        <!--<label class="custom-control-label" for="rememberMe">Agree to our <a href="#" class="btn-link">terms & conditions</a> </label> -->
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <button type="submit" class="btn-custom" name="register">S'inscrire</button>
+                    </div>
+                    <center><i><b>{{ message }}</b></i></center>
+                    </br>
+                    <p class="form-group text-center">Vous avez déjà un compte ? <a href="/login" class="btn-link">Connectez-vous</a> </p>
+                    
+                </form>
+            </div> 
+        </div>
+    </section>        
+    
+{% endblock %}
