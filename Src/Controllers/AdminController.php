@@ -67,11 +67,6 @@ class AdminController extends Controller
         header('Location: /page403');
     }
 
-/**
- * Undocumented function
- *
- * @return void
- */
     public function deletePost()
     {
         $postId = $_POST['postId'];
@@ -282,8 +277,6 @@ class AdminController extends Controller
         $commentsRepository = new CommentsRepository();
 
         $comment = $commentsRepository->getOneComment($commentId);
-        
-        
 
         if (isset($deleteComment)) {
             $commentsRepository->deleteComment($commentId);

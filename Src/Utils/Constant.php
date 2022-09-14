@@ -1,7 +1,6 @@
 <?php
 
-namespace Source;
-
+namespace Utils;
 class Constant
 {
     public const DB_NAME = 'oc-blog';

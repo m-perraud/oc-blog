@@ -12,7 +12,8 @@
             "Controllers\\": "Src/Controllers/",
             "Source\\" : "Src/", 
             "Models\\" : "Src/Models/",
-            "Repository\\" : "Src/Repository/"
+            "Repository\\" : "Src/Repository/",
+            "Utils\\" : "Src/Utils/"
         }
     },
     "require-dev": {

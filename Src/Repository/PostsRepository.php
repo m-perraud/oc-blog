@@ -28,9 +28,17 @@ class PostsRepository extends Database
     {
         $sql = "SELECT count(id) AS nbrLignes FROM posts";
         $result = $this->getPDO()->query($sql);
-        $posts = $result->fetch();
-        $totalPosts = (int) $posts['nbrLignes'];
+        $posts = $result->fetch(PDO::FETCH_ASSOC);
+        $totalPosts = $posts['nbrLignes'];
         return $totalPosts;
+    }
+
+    public function postsPerPage($start, $limit)
+    {
+        $sql = "SELECT * FROM posts INNER JOIN user ON posts.postAuthor = user.id ORDER BY posts.id DESC LIMIT $start, $limit";
+        $result = $this->getPDO()->query($sql);
+        $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
+        return $posts;
     }
 
     public function getOnePost($id)

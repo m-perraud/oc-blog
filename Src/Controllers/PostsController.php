@@ -4,17 +4,20 @@ namespace Controllers;
 
 use Repository\CommentsRepository;
 use Repository\PostsRepository;
+use Utils\Pagination;
 
 class PostsController extends Controller
 {
 
     public function grid()
     {
-        $postsRepository = new PostsRepository(); 
-        $posts = $postsRepository->getAllPosts();
+        $pagination = new Pagination(); 
+        $pages = $pagination->nmbrPages();
+        $posts = $pagination->getData(1);
 
         return $this->twig->display('blog-grid.html.twig', [
-            'posts' => $posts
+            'posts' => $posts,
+            'pages' => $pages
         ]);
     }
 

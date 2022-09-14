@@ -1,6 +1,6 @@
 <?php
 
-namespace Source;
+namespace Utils;
 
 class Auth
 {
