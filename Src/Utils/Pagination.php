@@ -7,7 +7,7 @@ use Repository\PostsRepository;
 
 class Pagination {
 
-    public $limit = 5;
+    public $limit = 6;
     public $start = 0;
 
     private function nmbrTotalPosts()

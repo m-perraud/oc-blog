@@ -18,7 +18,7 @@ class PostsRepository extends Database
 
     public function getAllPosts()
     {
-        $sql = "SELECT * FROM posts INNER JOIN user ON posts.postAuthor = user.id ORDER BY posts.id DESC";
+        $sql = "SELECT posts.*,user.adminLogin AS adminLogin FROM posts INNER JOIN user ON posts.postAuthor = user.id ORDER BY posts.id DESC";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
@@ -35,7 +35,7 @@ class PostsRepository extends Database
 
     public function postsPerPage($start, $limit)
     {
-        $sql = "SELECT * FROM posts INNER JOIN user ON posts.postAuthor = user.id ORDER BY posts.id DESC LIMIT $start, $limit";
+        $sql = "SELECT posts.*,user.adminLogin AS adminLogin FROM posts INNER JOIN user ON posts.postAuthor = user.id ORDER BY posts.id DESC LIMIT $start, $limit";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;

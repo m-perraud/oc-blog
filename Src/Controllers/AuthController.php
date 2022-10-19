@@ -17,14 +17,15 @@ class AuthController extends Controller
     public function registUser()
     {
 
-        $registerLogin = $_POST['username'];
-        $registerPW = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $registerMail = strip_tags($_POST['email']);
 
-        $userRepository = new UserRepository();
 
-        if($_POST && isset($registerLogin) && isset($registerPW) && isset($registerMail))
+        if($_POST && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']))
         {
+            $userRepository = new UserRepository();
+
+            $registerLogin = $_POST['username'];
+            $registerPW = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $registerMail = strip_tags($_POST['email']);
 
             $message = 'Votre demande d\'inscription a été envoyée aux administrateurs. Vous serez recontacté(e) sous peu.';
 
@@ -33,12 +34,14 @@ class AuthController extends Controller
             } catch (\PDOException $e) {
                     $message = "La création de compte n'a pas pue être exécutée.";
             }
-
-            return $this->twig->display('register.html.twig', 
-                [
-                    'message' => $message
-                ]);
         }
+
+        
+        return $this->twig->display('register.html.twig', 
+                [
+                    'message' => $message ?? "La création de compte n'a pas pue être exécutée."
+                ]);
+
     }
 
 

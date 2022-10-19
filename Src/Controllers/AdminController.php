@@ -74,7 +74,6 @@ class AdminController extends Controller
 
         $postsRepository = new PostsRepository();
 
-        $post = $postsRepository->getOnePost($postId);
 
         if (isset($deletePost)) {
             $postsRepository->deletePost($postId);
@@ -119,8 +118,6 @@ class AdminController extends Controller
 
     $postsRepository = new PostsRepository();
 
-    dd($_POST);
-
     if (isset($_POST['submit']) && isset($titlePost) && isset($textPost) && isset($chapoPost)) {
 
         $postsRepository->updatePost($titlePost, $textPost, $chapoPost, $postId);
@@ -158,9 +155,6 @@ class AdminController extends Controller
             http_response_code(403);
             $this->twig->display('page403.html.twig');
         }
-
-
-
 
         public function newPost()
         {

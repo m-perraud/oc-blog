@@ -24,8 +24,6 @@ class ContactController extends Controller
             $mailSubject = $_POST['subject'];
             $mailMessage = $_POST['message'];
 
-            //dd($_POST);
-
             $mail = new PHPMailer();
             $mail->isSMTP();
             $mail->Host = 'smtp-relay.sendinblue.com';
@@ -44,7 +42,7 @@ class ContactController extends Controller
             $mail->addAddress('m.perr.test@gmail.com');
             $mail->isHTML(true);
             $mail->Subject = $mailSubject;
-            $mail->Body    = $mailMessage;
+            $mail->Body    = $mailName .' '. $mailEmail .' '. $mailMessage;
 
 
 
