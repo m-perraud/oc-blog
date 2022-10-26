@@ -50,7 +50,8 @@ class PostsController extends Controller
         $commentsRepository = new CommentsRepository();
         $postsRepository = new PostsRepository();
 
-        if ($_POST && isset($usernameComment) && isset($textComment) && isset($emailComment) && isset($postId)) {
+        if ($_POST && isset($usernameComment) && isset($textComment) && isset($emailComment) && isset($postId)) 
+        {
 
             $comment = $commentsRepository->createComment($usernameComment, $textComment, $emailComment, $postId);
 

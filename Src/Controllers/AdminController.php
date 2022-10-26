@@ -174,16 +174,14 @@ class AdminController extends Controller
             $postsRepository = new PostsRepository();
 
             if (isset($titlePost) &&  isset($textPost) && isset($authorPost) && isset($chapoPost) && isset($imagePost)) {
-
                 $allowTypes = array('jpg','png','jpeg','gif','pdf');
-
                 if (in_array($fileType, $allowTypes)) {
                     move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath);
                 }
 
                 $postsRepository->createPost($titlePost, $textPost, $authorPost, $chapoPost, $newFileName);
                 $posts= $postsRepository->getAllPosts();
-    
+
                     return header('Location: /postsadmin');
                 }
 

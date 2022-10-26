@@ -43,7 +43,7 @@ class PostsRepository extends Database
 
     public function getOnePost($id)
     {
-        $sql = "SELECT * FROM posts INNER JOIN user ON posts.postAuthor = user.id WHERE posts.id = $id ORDER BY postDate DESC";
+        $sql = "SELECT posts.*,user.adminLogin AS adminLogin FROM posts INNER JOIN user ON posts.postAuthor = user.id WHERE posts.id = $id ORDER BY postDate DESC";
         $result = $this->getPDO()->query($sql);
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;

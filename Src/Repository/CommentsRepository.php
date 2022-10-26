@@ -12,7 +12,6 @@ class CommentsRepository extends Database
     {
         $sql = "SELECT * FROM comments WHERE postId = $id";
         $result = $this->getPDO()->query($sql);
-        //dd($result->fetchAll());
         $comments = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $comments;
     }
