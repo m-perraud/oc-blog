@@ -33,12 +33,10 @@ class AdminController extends Controller
 
         $userRepository = new UserRepository();
 
-        $user = $userRepository->findOneUser($adminId);
-
 
         if (isset($deleteAdmin)) {
             $userRepository->updateAdmin($adminId);
-            $users = $userRepository->findAllUsers();
+
             return header('Location: /dashboard');
         }
 
@@ -77,7 +75,6 @@ class AdminController extends Controller
 
         if (isset($deletePost)) {
             $postsRepository->deletePost($postId);
-            $posts = $postsRepository->getAllPosts();
             return header('Location: /postsadmin');
         }
 
@@ -132,7 +129,6 @@ class AdminController extends Controller
 
         $posts= $postsRepository->getAllPosts();
 
-        $success = 'L\'opération a bien pu être effectuée.';
         return header('Location: /postsadmin');
     }
 
@@ -146,7 +142,7 @@ class AdminController extends Controller
 
         public function createPost()
         {
-            $postsRepository = new PostsRepository();
+
     
             if (!empty($_SESSION['auth'])) {
                 return $this->twig->display('createpost.html.twig');
@@ -226,13 +222,11 @@ class AdminController extends Controller
 
         if (isset($deleteComment)) {
             $commentsRepository->deleteComment($commentId);
-            $comments = $commentsRepository->findAllCommentsPending();
             return header('Location: /commentadmin');
         }
 
         if (isset($validateComment)) {
             $commentsRepository->validateComment($commentId);
-            $comments = $commentsRepository->findAllCommentsPending();
             return header('Location: /commentadmin');
         }
 
@@ -264,15 +258,11 @@ class AdminController extends Controller
     {
         $commentId = $_POST['commentId'];
         $deleteComment = $_POST['delete'];
-        $validateComment = $_POST['validate'];
 
         $commentsRepository = new CommentsRepository();
 
-        $comment = $commentsRepository->getOneComment($commentId);
-
         if (isset($deleteComment)) {
             $commentsRepository->deleteComment($commentId);
-            $comments = $commentsRepository->findAllCommentsPending();
             return header('Location: /commentlist');
         }
 
