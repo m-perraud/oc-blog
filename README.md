@@ -22,7 +22,9 @@ We will need composer for the project.
 ### Database
 
 The database informations are stored in the  Src/Utils/Constant.php file of the project 
+
 ![image](https://user-images.githubusercontent.com/98537701/198880602-d997df4a-5a06-42d3-89ce-6634ef8ad5d2.png)
+
 You have to modify those informations if you won't use the same. 
 
 To set up the database, you will need to import the .sql files. You have two options : 
@@ -43,9 +45,11 @@ To set up the database, you will need to import the .sql files. You have two opt
  
  To set the mailing, you'll have to add your own informations. 
  To do this, you can go in the Src/Utils/Constant.php file of the project and set up your SMTP : 
+ 
  ![image](https://user-images.githubusercontent.com/98537701/198881374-9e558a5b-f2ba-4c5a-8dee-efd4f33e0616.png)
  
  If you have any hesitation about the informations you're supposed to set in, you can refer to this part of the sendMail() function : 
+ 
  ![image](https://user-images.githubusercontent.com/98537701/198881451-c524aea5-dfdd-429d-91c1-6e14a007f2d6.png)
  
  
