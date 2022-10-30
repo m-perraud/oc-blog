@@ -2,6 +2,7 @@
 
 namespace Controllers; 
 
+use Utils\Constant;
 use Repository\PostsRepository;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -26,7 +27,7 @@ class ContactController extends Controller
 
             $mail = new PHPMailer();
             $mail->isSMTP();
-            $mail->Host = 'smtp-relay.sendinblue.com';
+            $mail->Host = Constant::SMTP_HOST;
             $mail->SMTPOptions = array(
                 'ssl' => array(
                 'verify_peer' => false,
@@ -34,12 +35,12 @@ class ContactController extends Controller
                 'allow_self_signed' => true
                 ));
             $mail->SMTPAuth = true;
-            $mail->Username = 'm.perra.test@gmail.com';
-            $mail->Password = 'D8ZNE3MRSLG9vsdB';
+            $mail->Username = Constant::SMTP_USERNAME;
+            $mail->Password = Constant::SMTP_PASSWORD;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
-            $mail->setFrom('m.perra.test@gmail.com');
-            $mail->addAddress('m.perra.test@gmail.com');
+            $mail->setFrom(Constant::SMTP_SETFROM);
+            $mail->addAddress(Constant::SMTP_ADDADRESS);
             $mail->isHTML(true);
             $mail->Subject = $mailSubject;
             $mail->Body    = $mailName .' '. $mailEmail .' '. $mailMessage;
