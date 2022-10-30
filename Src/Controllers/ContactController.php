@@ -34,12 +34,12 @@ class ContactController extends Controller
                 'allow_self_signed' => true
                 ));
             $mail->SMTPAuth = true;
-            $mail->Username = 'm.perr.test@gmail.com';
-            $mail->Password = 'Q659ZHyp1qAJtRFr';
+            $mail->Username = 'm.perra.test@gmail.com';
+            $mail->Password = 'D8ZNE3MRSLG9vsdB';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
-            $mail->setFrom('m.perr.test@gmail.com');
-            $mail->addAddress('m.perr.test@gmail.com');
+            $mail->setFrom('m.perra.test@gmail.com');
+            $mail->addAddress('m.perra.test@gmail.com');
             $mail->isHTML(true);
             $mail->Subject = $mailSubject;
             $mail->Body    = $mailName .' '. $mailEmail .' '. $mailMessage;

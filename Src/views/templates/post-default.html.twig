@@ -26,8 +26,6 @@
                                     <li><a href="author.html">{{ post.adminLogin }}</a> </li>
                                     <li class="dot"></li>
                                     <li>{{ post.postDate|date("d/m/Y") }}</li>
-                                    <li class="dot"></li>
-                                    <li>{{ comments|length }} comments</li>
                                 </ul>
                             </div>
                         </div>
@@ -42,10 +40,12 @@
                     <div class="widget mb-50">
                     
                         <div class="title">
-                            <h5>{{ comments|length }} Comments</h5>
+                            <h5>Commentaires</h5>
+                            </br>
                         </div>
                         {% for comment in comments %}
-                        <ul class="widget-comments">
+                        {% if comment.commentStatus %}
+                            <ul class="widget-comments">
                             <li class="comment-item">
                                 <div class="content">
                                     <ul class="info list-inline">
@@ -57,31 +57,33 @@
                                     </p>
                                 </div>
                             </li>
-                        </ul>                
+                        </ul>  
+                        {% else %} 
+                        {% endif %}
                         {% endfor %}
 
 
                         <!--Leave-comments-->
                         <div class="title">
-                            <h5>Leave a Reply</h5>
+                            <h5>Laisser un commentaire</h5>
                         </div>
                         <form class="widget-form" action="/createcomment" method="POST" id="main_contact_form">
                         {% for post in posts %}
                         <input type="hidden" name="postId" value=" {{ post.id }} " />
                         {% endfor %}
-                            <p>Your email adress will not be published.</p>
+                            <p>Votre adresse email ne sera pas publiée.</p>
                             <div class="alert alert-success contact_msg" style="display: none" role="alert">
-                                Your message was sent successfully.
+                                Votre message a bien été envoyé.
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea required name="text" id="message" cols="30" rows="5" class="form-control" placeholder="Comment"></textarea>
+                                        <textarea required name="text" id="message" cols="30" rows="5" class="form-control" placeholder="Commentaire"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input required type="text" name="username" id="name" class="form-control" placeholder="Username">
+                                        <input required type="text" name="username" id="name" class="form-control" placeholder="Nom d'utilisateur">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -91,7 +93,7 @@
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" name="submit" class="btn-custom">
-                                        Post Comment
+                                        Poster mon commentaire
                                     </button>
                                 </div> 
                             </div>
@@ -101,60 +103,10 @@
 
 
                 <div class="col-lg-4 max-width">
-                    <!--widget-author-->
-                    <div class="widget">
-                        <div class="widget-author">
-                            <a href="author.html" class="image">
-                                <img src="/img/author/1.jpg" alt="">
-                            </a>
-                            <h6>
-                                <span>Hi, I'm David Smith</span>
-                            </h6>
-                            <p>
-
-                            I'm David Smith, husband and father ,
-                            I love Photography,travel and nature. I'm working as a writer and blogger with experience
-                            of 5 years until now.
-                        </p>
-                    
-                    
-                            <div class="social-media">
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="#" class="color-facebook">
-                                            <i class="fab fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-instagram">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-twitter">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-youtube">
-                                            <i class="fab fa-youtube"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="color-pinterest">
-                                            <i class="fab fa-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/-->
-
                     <!--widget-latest-posts-->
                     <div class="widget ">
                         <div class="section-title">
-                            <h5>Latest Posts</h5>
+                            <h5>Derniers articles</h5>
                         </div>
                         <ul class="widget-latest-posts">
                             {% for lastPost in lastPosts %}
