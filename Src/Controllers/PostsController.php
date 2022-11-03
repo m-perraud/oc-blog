@@ -11,9 +11,10 @@ class PostsController extends Controller
 
     public function grid()
     {
+        
         $pagination = new Pagination(); 
         $pages = $pagination->nmbrPages();
-        $posts = $pagination->getData(1);
+        $posts = $pagination->getData();
 
         return $this->twig->display('blog-grid.html.twig', [
             'posts' => $posts,
@@ -42,10 +43,10 @@ class PostsController extends Controller
     public function newComment()
     {
 
-        $usernameComment = $_POST['username'];
-        $textComment = $_POST['text'];
-        $emailComment = $_POST['email'];
-        $postId = $_POST['postId'];
+        $usernameComment = $this->sanitize->cleanData($_POST['username']);
+        $textComment = $this->sanitize->cleanData($_POST['text']);
+        $emailComment = $this->sanitize->cleanData($_POST['email']);
+        $postId = $this->sanitize->cleanData($_POST['postId']);
 
         $commentsRepository = new CommentsRepository();
         $postsRepository = new PostsRepository();

@@ -1,6 +1,7 @@
 <?php
 
 use Router\Router;
+use Utils\Sanitize;
 
 
 require '../vendor/autoload.php';
@@ -8,11 +9,13 @@ require '../vendor/autoload.php';
 
 define('BASE_VIEW_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
 
-$router = new Router($_GET['url']);
+$sanitize = new Sanitize();
+$url = $sanitize->cleanData($_GET['url']);
+$router = new Router($url);
+
 
 $router->get('/', "Home#index");
 $router->get('/allposts', "Posts#grid");
-//$router->get('/posts/:id-:slug', "Posts#postDetails")->with('id', '[0-9]+')->with('slug', '([a-z\-0-9]+)');
 $router->get('/posts/:id', "Posts#postDetails")->with('id', '[0-9]+');
 $router->post('/createcomment', "Posts#newComment");
 $router->get('/contact', "Contact#contact");

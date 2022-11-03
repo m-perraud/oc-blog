@@ -17,15 +17,13 @@ class AuthController extends Controller
     public function registUser()
     {
 
-
-
         if($_POST && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']))
         {
             $userRepository = new UserRepository();
 
-            $registerLogin = $_POST['username'];
-            $registerPW = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $registerMail = strip_tags($_POST['email']);
+            $registerLogin = $this->sanitize->cleanData($_POST['username']);
+            $registerPW = password_hash($this->sanitize->cleanData($_POST['password']), PASSWORD_BCRYPT);
+            $registerMail = $this->sanitize->cleanData($_POST['email']);
 
             $message = 'Votre demande d\'inscription a été envoyée aux administrateurs. Vous serez recontacté(e) sous peu.';
 
@@ -47,8 +45,8 @@ class AuthController extends Controller
 
     public function loginForm()
     {
-        $loginPost = $_POST['username'];
-        $passwordPost = $_POST['password'];
+        $loginPost = $this->sanitize->cleanData($_POST['username']);
+        $passwordPost = $this->sanitize->cleanData($_POST['password']);
 
         $userRepository = new UserRepository();
         $users = $userRepository->verifyAdminLogin($loginPost);

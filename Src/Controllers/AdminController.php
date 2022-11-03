@@ -5,7 +5,6 @@ namespace Controllers;
 use Repository\UserRepository;
 use Repository\PostsRepository;
 use Repository\CommentsRepository;
-use Controllers\HomeController;
 
 class AdminController extends Controller
 {
@@ -28,8 +27,8 @@ class AdminController extends Controller
 
     public function userManagement($adminId)
     {
-        $adminId = $_POST['adminId'];
-        $deleteAdmin = $_POST['delete'];
+        $adminId = $this->sanitize->cleanData($_POST['adminId']);
+        $deleteAdmin = $this->sanitize->cleanData($_POST['delete']);
 
         $userRepository = new UserRepository();
 
@@ -67,8 +66,8 @@ class AdminController extends Controller
 
     public function deletePost()
     {
-        $postId = $_POST['postId'];
-        $deletePost = $_POST['delete'];
+        $postId = $this->sanitize->cleanData($_POST['postId']);
+        $deletePost = $this->sanitize->cleanData($_POST['delete']);
 
         $postsRepository = new PostsRepository();
 
@@ -103,10 +102,12 @@ class AdminController extends Controller
 
     public function updatePost()
     {
-    $postId = $_POST['postId'];
-    $titlePost = trim($_POST['title']);
-    $textPost = $_POST['text'];
-    $chapoPost = $_POST['chapo'];
+    $postId = $this->sanitize->cleanData($_POST['postId']);
+    $titlePost = $this->sanitize->cleanData(trim($_POST['title']));
+    $textPost = $this->sanitize->cleanData($_POST['text']);
+    $chapoPost = $this->sanitize->cleanData($_POST['chapo']);
+    $submit = $this->sanitize->cleanData($_POST['submit']);
+
 
     $targetDir = "..\Public\img\posts\\";
     $fileName = $_FILES['file']['name'];
@@ -114,30 +115,33 @@ class AdminController extends Controller
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
     $postsRepository = new PostsRepository();
+    $posts = $postsRepository->getOnePost($postId);
 
-    if (isset($_POST['submit']) && isset($titlePost) && isset($textPost) && isset($chapoPost)) {
-
-        $postsRepository->updatePost($titlePost, $textPost, $chapoPost, $postId);
+    if (isset($submit) && isset($titlePost) && isset($textPost) && isset($chapoPost)) {
+    
 
         $allowTypes = array('jpg','png','jpeg','gif','pdf');
 
         if (in_array($fileType, $allowTypes)) {
+            
+            $postsRepository->updatePost($titlePost, $textPost, $chapoPost, $postId);
+
             move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath);
             $postsRepository->changeImagePost($postId, $fileName);
-            
+
+            return header('Location: /postsadmin');
         }
-
-        $posts= $postsRepository->getAllPosts();
-
-        return header('Location: /postsadmin');
+        
     }
 
-    $error = 'L\'opération n\'a pas pu être effectuée. 
-                Merci de vérifier que tous les champs sont remplis.';
+        $error = 'L\'opération n\'a pas pu être effectuée. 
+        Merci de vérifier que tous les champs sont remplis et les fichiers dans le bon format..';
 
-    return $this->twig->display('editpost.html.twig', [
-                'error' => $error
-            ]);
+        return $this->twig->display('editpost.html.twig', [
+            'posts' => $posts, 
+            'error' => $error
+        ]);
+    
 }
 
         public function createPost()
@@ -154,11 +158,11 @@ class AdminController extends Controller
 
         public function newPost()
         {
-            $titlePost = trim($_POST['title']);
-            $textPost = $_POST['text'];
-            $authorPost = $_POST['author'];
+            $titlePost = $this->sanitize->cleanData(trim($_POST['title']));
+            $textPost = $this->sanitize->cleanData($_POST['text']);
+            $authorPost = $this->sanitize->cleanData($_POST['author']);
             $imagePost = $_FILES['file'];
-            $chapoPost = $_POST['chapo'];
+            $chapoPost = $this->sanitize->cleanData($_POST['chapo']);
 
 
             $targetDir = "..\Public\img\posts\\";
@@ -170,19 +174,20 @@ class AdminController extends Controller
             $postsRepository = new PostsRepository();
 
             if (isset($titlePost) &&  isset($textPost) && isset($authorPost) && isset($chapoPost) && isset($imagePost)) {
+
                 $allowTypes = array('jpg','png','jpeg','gif','pdf');
                 if (in_array($fileType, $allowTypes)) {
                     move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath);
-                }
 
-                $postsRepository->createPost($titlePost, $textPost, $authorPost, $chapoPost, $newFileName);
-                $posts= $postsRepository->getAllPosts();
+                    $postsRepository->createPost($titlePost, $textPost, $authorPost, $chapoPost, $newFileName);
 
                     return header('Location: /postsadmin');
+
+                } 
                 }
 
                 $error = 'L\'opération n\'a pas pu être effectuée. 
-                Merci de vérifier que tous les champs sont remplis.';
+                Merci de vérifier que tous les champs sont remplis et les fichiers dans le bon format.';
 
                 return $this->twig->display('createpost.html.twig', [
                     'error' => $error
@@ -210,9 +215,9 @@ class AdminController extends Controller
 
     public function deleteComment()
     {
-        $commentId = $_POST['commentId'];
-        $deleteComment = $_POST['delete'];
-        $validateComment = $_POST['validate'];
+        $commentId = $this->sanitize->cleanData($_POST['commentId']);
+        $deleteComment = $this->sanitize->cleanData($_POST['delete']);
+        $validateComment = $this->sanitize->cleanData($_POST['validate']);
 
         $commentsRepository = new CommentsRepository();
 
@@ -256,8 +261,8 @@ class AdminController extends Controller
 
     public function deleteCommentList()
     {
-        $commentId = $_POST['commentId'];
-        $deleteComment = $_POST['delete'];
+        $commentId = $this->sanitize->cleanData($_POST['commentId']);
+        $deleteComment = $this->sanitize->cleanData($_POST['delete']);
 
         $commentsRepository = new CommentsRepository();
 

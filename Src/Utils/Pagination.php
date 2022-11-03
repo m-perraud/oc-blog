@@ -2,13 +2,14 @@
 
 namespace Utils;
 
+use Utils\Sanitize;
 use Repository\PostsRepository;
 
 
 class Pagination {
 
-    public $limit = 6;
-    public $start = 0;
+    private $limit = 6;
+    private $start = 0;
 
     private function nmbrTotalPosts()
     {
@@ -25,18 +26,21 @@ class Pagination {
     }
 
     public function current_page(){
-        return isset($_GET['page']) ? (int)$_GET['page'] :1;
+        $sanitize = new Sanitize();
+$getPage = $sanitize->cleanData($_GET['page']);
+
+        return isset($getPage) ? (int)$getPage :1;
     }
 
-    public function getData($start) {
+    public function getData() {
 
         $postsRepository = new PostsRepository();
 
         if($this->current_page() > 1) {
-            $start = ($this->current_page() * $this->limit) - $this->limit;
+            $this->start = ($this->current_page() * $this->limit) - $this->limit;
         }
 
-        $pagePosts = $postsRepository->postsPerPage($start, $this->limit);
+        $pagePosts = $postsRepository->postsPerPage($this->start, $this->limit);
 
         return $pagePosts;
 

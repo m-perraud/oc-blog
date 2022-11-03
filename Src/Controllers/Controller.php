@@ -5,11 +5,13 @@ namespace Controllers;
 use Twig\Environment;
 use Repository\UserRepository;
 use Twig\Loader\FilesystemLoader;
+use Utils\Sanitize;
 
 class Controller
 {
     private $loader;
     protected $twig;
+    public $sanitize;
 
     public function __construct()
     {
@@ -21,6 +23,10 @@ class Controller
 
         $this->twig = new Environment($this->loader);
         $this->twig->addGlobal('session', $_SESSION);
+
+        $this->sanitize = new Sanitize();
+
     }
+
 
 }

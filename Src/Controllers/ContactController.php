@@ -20,10 +20,10 @@ class ContactController extends Controller
     public function sendMail() 
         {
 
-            $mailName = $_POST['name'];
-            $mailEmail = $_POST['email'];
-            $mailSubject = $_POST['subject'];
-            $mailMessage = $_POST['message'];
+            $mailName = $this->sanitize->cleanData($_POST['name']);
+            $mailEmail = $this->sanitize->cleanData($_POST['email']);
+            $mailSubject = $this->sanitize->cleanData($_POST['subject']);
+            $mailMessage = $this->sanitize->cleanData($_POST['message']);
 
             $mail = new PHPMailer();
             $mail->isSMTP();
