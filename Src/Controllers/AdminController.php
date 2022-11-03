@@ -216,7 +216,7 @@ class AdminController extends Controller
     public function deleteComment()
     {
         $commentId = $this->sanitize->cleanData($_POST['commentId']);
-        $deleteComment = $this->sanitize->cleanData($_POST['delete']);
+        $deleteComment = $_POST['delete'];
         $validateComment = $this->sanitize->cleanData($_POST['validate']);
 
         $commentsRepository = new CommentsRepository();

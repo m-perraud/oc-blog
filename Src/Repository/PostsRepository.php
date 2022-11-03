@@ -43,8 +43,10 @@ class PostsRepository extends Database
 
     public function getOnePost($id)
     {
-        $sql = "SELECT posts.*,user.adminLogin AS adminLogin FROM posts INNER JOIN user ON posts.postAuthor = user.id WHERE posts.id = $id ORDER BY postDate DESC";
-        $result = $this->getPDO()->query($sql);
+        $sql = "SELECT posts.*,user.adminLogin AS adminLogin FROM posts INNER JOIN user ON posts.postAuthor = user.id WHERE posts.id = :id ORDER BY postDate DESC";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
@@ -55,24 +57,38 @@ class PostsRepository extends Database
         $sql = "INSERT INTO `posts` 
         (`postTitle`, `postText`, `postAuthor`, `postChapo`, `postImage`)
         VALUES 
-        (\"$titlePost\", \"$textPost\", \"$authorPost\", \"$chapoPost\", \"$newFileName\")";
-        $result = $this->getPDO()->query($sql);
+        (:titlePost, :textPost, :authorPost, :chapoPost, :newFileName)";
+        $result = $this->getPDO()->prepare($sql);
+        
+        $result->bindValue(':titlePost', $titlePost, PDO::PARAM_STR );
+        $result->bindValue(':textPost', $textPost, PDO::PARAM_STR);
+        $result->bindValue(':authorPost', $authorPost, PDO::PARAM_STR);
+        $result->bindValue(':chapoPost', $chapoPost, PDO::PARAM_STR);
+        $result->bindValue(':newFileName', $newFileName, PDO::PARAM_STR);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
 
     public function updatePost($titlePost, $textPost,$chapoPost, $postId)
     {
-        $sql = "UPDATE posts SET postTitle = \"$titlePost\", postText = \"$textPost\", postChapo = \"$chapoPost\"  WHERE id = \"$postId\"";
-        $result = $this->getPDO()->query($sql);
+        $sql = "UPDATE posts SET postTitle = :titlePost, postText = :textPost, postChapo = :chapoPost  WHERE id = :postId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':titlePost', $titlePost, PDO::PARAM_STR );
+        $result->bindValue(':textPost', $textPost, PDO::PARAM_STR);
+        $result->bindValue(':chapoPost', $chapoPost, PDO::PARAM_STR);
+        $result->bindValue(':postId', $postId, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
 
     public function deletePost($postId)
     {
-        $sql = "DELETE FROM posts WHERE ID = $postId";
-        $result = $this->getPDO()->query($sql);
+        $sql = "DELETE FROM posts WHERE ID = :postId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':postId', $postId, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
@@ -80,8 +96,11 @@ class PostsRepository extends Database
     public function changeImagePost($postId, $fileName)
     {
         
-        $sql = "UPDATE posts SET postImage = \"$fileName\" WHERE id = \"$postId\"";
-        $result = $this->getPDO()->query($sql);
+        $sql = "UPDATE posts SET postImage = :fileName WHERE id = :postId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':fileName', $fileName, PDO::PARAM_STR);
+        $result->bindValue(':postId', $postId, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }
@@ -89,8 +108,11 @@ class PostsRepository extends Database
     public function addImagePost($postId, $fileName)
     {
         
-        $sql = "INSERT into posts (postImage) WHERE id = $postId VALUES (\"$fileName\")";
-        $result = $this->getPDO()->query($sql);
+        $sql = "INSERT into posts (postImage) WHERE id = :postId VALUES (:fileName)";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':fileName', $fileName, PDO::PARAM_STR);
+        $result->bindValue(':postId', $postId, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, PostModel::class);
         return $posts;
     }

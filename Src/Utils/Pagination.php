@@ -26,10 +26,8 @@ class Pagination {
     }
 
     public function current_page(){
-        $sanitize = new Sanitize();
-$getPage = $sanitize->cleanData($_GET['page']);
 
-        return isset($getPage) ? (int)$getPage :1;
+        return isset($_GET['page']) ? (int)$_GET['page'] :1;
     }
 
     public function getData() {

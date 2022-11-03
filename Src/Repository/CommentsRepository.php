@@ -10,8 +10,10 @@ class CommentsRepository extends Database
 {
     public function getAllComments($id)
     {
-        $sql = "SELECT * FROM comments WHERE postId = $id";
-        $result = $this->getPDO()->query($sql);
+        $sql = "SELECT * FROM comments WHERE postId = :id";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':id', $id, PDO::PARAM_INT);
+        $result->execute();
         $comments = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $comments;
     }
@@ -26,17 +28,20 @@ class CommentsRepository extends Database
 
     public function getOneComment($commentId)
     {
-        $sql = "SELECT * FROM comments WHERE ID = $commentId";
-        $result = $this->getPDO()->query($sql);
+        $sql = "SELECT * FROM comments WHERE ID = :commentId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':commentId', $commentId, PDO::PARAM_INT);
+        $result->execute();
         $comments = $result->fetchObject(CommentModel::class);
-        //$comments = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $comments;
     }
 
     public function deleteComment($commentId)
     {
-        $sql = "DELETE FROM comments WHERE id = $commentId";
-        $result = $this->getPDO()->query($sql);
+        $sql = "DELETE FROM comments WHERE id = :commentId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':commentId', $commentId, PDO::PARAM_INT);
+        $result->execute();
         $comments = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $comments;
     }
@@ -51,8 +56,10 @@ class CommentsRepository extends Database
 
     public function validateComment($commentId)
     {
-        $sql = "UPDATE comments SET commentStatus = 1 WHERE id = $commentId";
-        $result = $this->getPDO()->query($sql);
+        $sql = "UPDATE comments SET commentStatus = 1 WHERE id = :commentId";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':commentId', $commentId, PDO::PARAM_INT);
+        $result->execute();
         $comments = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $comments;
     }
@@ -63,8 +70,14 @@ class CommentsRepository extends Database
         $sql = "INSERT INTO `comments` 
         (`commentUsername`, `commentText`, `commentMail`, `postId`)
         VALUES 
-        (\"$usernameComment\", \"$textComment\", \"$emailComment\", \"$postId\")";
-        $result = $this->getPDO()->query($sql);
+        (:usernameComment, :textComment, :emailComment, :postId)";
+
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':usernameComment', $usernameComment, PDO::PARAM_STR );
+        $result->bindValue(':textComment', $textComment, PDO::PARAM_STR);
+        $result->bindValue(':emailComment', $emailComment, PDO::PARAM_STR);
+        $result->bindValue(':postId', $postId, PDO::PARAM_INT);
+        $result->execute();
         $posts = $result->fetchAll(PDO::FETCH_CLASS, CommentModel::class);
         return $posts;
     }

@@ -39,8 +39,10 @@ class UserRepository extends Database
 
     public function verifyAdminLogin($loginPost)
     {
-        $sql = "SELECT * FROM user WHERE adminLogin = \"$loginPost\"";
-        $result = $this->getPDO()->query($sql);
+        $sql = "SELECT * FROM user WHERE adminLogin = :loginPost";
+        $result = $this->getPDO()->prepare($sql);
+        $result->bindValue(':loginPost', $loginPost, PDO::PARAM_STR );
+        $result->execute();
         $user = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);
         return $user; 
     }
@@ -50,13 +52,15 @@ class UserRepository extends Database
 
         $sql = "INSERT INTO user (`userMail`, `adminLogin`, `adminPW`) 
         VALUES 
-        (:registerMail;, :registerLogin;, :registerPW;)";
+        (:registerMail, :registerLogin, :registerPW)";
 
         $result = $this->getPDO()->prepare($sql);
-        $result->bindValue(':registerMail', $registerMail, PDO::PARAM_INT);
-        $result->bindValue(':registerLogin', $registerLogin, PDO::PARAM_INT);
-        $result->bindValue(':registerPW', $registerPW, PDO::PARAM_INT);
+        
+        $result->bindValue(':registerMail', $registerMail, PDO::PARAM_STR );
+        $result->bindValue(':registerLogin', $registerLogin, PDO::PARAM_STR);
+        $result->bindValue(':registerPW', $registerPW, PDO::PARAM_STR);
         $result->execute();
+        
         $user = $result->fetchAll(PDO::FETCH_CLASS, UserModel::class);
         return $user;
     } 
@@ -65,7 +69,7 @@ class UserRepository extends Database
     {
 
         $sql = "UPDATE user SET adminStatus = (CASE adminStatus WHEN 1 THEN 0 ELSE 1 END) 
-        WHERE id = :adminId;";
+        WHERE id = :adminId";
         $result = $this->getPDO()->prepare($sql);
         $result->bindValue(':adminId', $adminId, PDO::PARAM_INT);
         $result->execute();
